@@ -1,0 +1,37 @@
+{%- doc -%}
+  Lumeia noindex control. Keeps utility and accessory pages out of search engines. The gift/accessory
+  products MUST stay published on the Online Store sales channel (Kaching adds them to the cart as
+  0 KWD line items, and Smooth picks by order lines), but we do not want them found in Google. This
+  emits a `noindex,follow` meta in the <head> for those pages. Rendered once from layout/theme.liquid
+  right after meta-tags.
+
+  WHAT IS NOINDEXED, AND WHY (keep this in sync if the catalogue changes):
+  - /collections/all            -> Shopify's automatic all-products collection; it exposes the
+                                   accessory/gift products. Matched by collection.handle == 'all'.
+  - /collections (list page)    -> the collections index; unused.
+  - Accessory products          -> the Bottle, Grip Socks, both Microfiber Pouches. Matched by
+                                   product.type == 'Accessory', so any NEW accessory typed 'Accessory'
+                                   is covered automatically.
+  - Single-sachet samples       -> the two single-sachet products. They share the hero products'
+                                   product type (Collagen/Protein Supplement), so we key off the
+                                   'single-sachet' tag, NOT the type.
+
+  NOT matched (so they stay indexed): the two hero products, Complete Collagen and Thrive Protein.
+  Shopify already noindexes cart, checkout, account and search. We use noindex,FOLLOW so link equity
+  still flows through to the hero products.
+{%- enddoc -%}
+{%- liquid
+  assign lumeia_noindex = false
+  if request.page_type == 'collection' and collection.handle == 'all'
+    assign lumeia_noindex = true
+  elsif request.page_type == 'list-collections'
+    assign lumeia_noindex = true
+  elsif request.page_type == 'product'
+    if product.type == 'Accessory' or product.tags contains 'single-sachet'
+      assign lumeia_noindex = true
+    endif
+  endif
+-%}
+{%- if lumeia_noindex -%}
+  <meta name="robots" content="noindex,follow">
+{%- endif -%}

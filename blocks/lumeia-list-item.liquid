@@ -1,0 +1,61 @@
+{% comment %}
+  Lumeia List Item — like Pebble's native List item, but the icon can be an uploaded image
+  (not only a preset), and the text field carries an in-editor how-to for reference superscripts.
+  Renders identically to the native list item (icon + text row) and reuses the theme's own
+  icon-or-image and text snippets, so it stays on-brand and translatable.
+{% endcomment %}
+{%- liquid
+  assign s = block.settings
+-%}
+<li class="list-item-block list-item flex items-center gap-3 w-full" {{ block.shopify_attributes }}>
+  <div
+    class="list-item__icon inline-flex items-center justify-center shrink-0"
+    style="
+      {% if s.icon_bg_color != blank and s.icon_bg_color != 'rgba(0,0,0,0)' %}background-color: {{ s.icon_bg_color }}; padding: 6px; border-radius: 50%;{% endif %}
+      {% if s.icon_color != blank and s.icon_color != 'rgba(0,0,0,0)' %}color: {{ s.icon_color }};{% endif %}
+    "
+  >
+    {%- render 'icon-or-image',
+      icon: s.icon,
+      image_upload: s.icon_image_upload,
+      icon_size: s.icon_size,
+      width: s.icon_width,
+      width_mobile: s.icon_width_mobile
+    -%}
+  </div>
+  <div class="list-item__text-wrapper flex-1">
+    {%- render 'text', block: block -%}
+  </div>
+  <style>
+    [data-block-id="{{ block.id }}"] .list-item__text-wrapper * { display: inline !important; white-space: normal !important; width: auto !important; }
+    [data-block-id="{{ block.id }}"].list-item-block { max-width: 100% !important; width: 100% !important; }
+  </style>
+</li>
+{% schema %}
+{
+  "name": "Lumeia List Item",
+  "tag": null,
+  "settings": [
+    { "type": "header", "content": "Icon" },
+    { "type": "image_picker", "id": "icon_image_upload", "label": "Custom icon (upload your own)", "info": "Optional. Upload any icon image. If empty, the chosen icon below is used." },
+    { "type": "select", "id": "icon", "label": "Icon (if no image uploaded)", "default": "check", "options": [ {"value":"caret-left","label":"Caret left"}, {"value":"caret-right","label":"Caret right"}, {"value":"caret-down","label":"Caret down"}, {"value":"arrow-up-left","label":"Arrow up left"}, {"value":"arrow-up-left-down","label":"Arrow up left down"}, {"value":"close","label":"Close"}, {"value":"plus","label":"Plus"}, {"value":"minus","label":"Minus"}, {"value":"check","label":"Check"}, {"value":"cart","label":"Cart"}, {"value":"basket","label":"Basket"}, {"value":"shopping-bag","label":"Shopping bag"}, {"value":"heart-beat","label":"Heart beat"}, {"value":"baby-carriage","label":"Baby carriage"}, {"value":"account","label":"Account"}, {"value":"search","label":"Search"}, {"value":"tag","label":"Tag"}, {"value":"chat-teardrop","label":"Chat teardrop"}, {"value":"credit-card","label":"Credit card"}, {"value":"barcode","label":"Barcode"}, {"value":"storefront","label":"Storefront"}, {"value":"package","label":"Package"}, {"value":"magic-wand","label":"Magic wand"}, {"value":"funnel","label":"Funnel"}, {"value":"phone","label":"Phone"}, {"value":"map-pin","label":"Map pin"}, {"value":"clock","label":"Clock"}, {"value":"lightning","label":"Lightning"}, {"value":"heart","label":"Heart"}, {"value":"gift","label":"Gift"}, {"value":"globe","label":"Globe"}, {"value":"car-simple","label":"Car simple"}, {"value":"truck","label":"Truck"}, {"value":"paper-plane","label":"Paper plane"}, {"value":"waves","label":"Waves"}, {"value":"calendar-blank","label":"Calendar blank"}, {"value":"umbrella","label":"Umbrella"}, {"value":"circle-half","label":"Circle half"}, {"value":"bell-ringing","label":"Bell ringing"}, {"value":"tiktok","label":"Tiktok"}, {"value":"instagram","label":"Instagram"}, {"value":"pinterest","label":"Pinterest"}, {"value":"x","label":"X"}, {"value":"facebook","label":"Facebook"}, {"value":"telegram","label":"Telegram"}, {"value":"whatsapp","label":"Whatsapp"}, {"value":"email","label":"Email"}, {"value":"linkedin","label":"Linkedin"}, {"value":"snapchat","label":"Snapchat"}, {"value":"tumblr","label":"Tumblr"}, {"value":"threads","label":"Threads"} ] },
+    { "type": "select", "id": "icon_size", "label": "Icon size", "default": "custom-size", "options": [ {"value":"extra-small","label":"Extra small"}, {"value":"small","label":"Small"}, {"value":"medium","label":"Medium"}, {"value":"large","label":"Large"}, {"value":"extra-large","label":"Extra large"}, {"value":"custom-size","label":"Custom"} ] },
+    { "type": "range", "id": "icon_width", "label": "Icon width (desktop)", "min": 12, "max": 80, "step": 1, "unit": "px", "default": 22, "visible_if": "{{ block.settings.icon_size == 'custom-size' }}" },
+    { "type": "range", "id": "icon_width_mobile", "label": "Icon width (mobile)", "min": 12, "max": 80, "step": 1, "unit": "px", "default": 20, "visible_if": "{{ block.settings.icon_size == 'custom-size' }}" },
+    { "type": "color", "id": "icon_color", "label": "Icon colour" },
+    { "type": "color", "id": "icon_bg_color", "label": "Icon background" },
+
+    { "type": "header", "content": "Text" },
+    { "type": "paragraph", "content": "Reference numbers: to add a small raised number after a word (a citation), copy one of these characters straight into the text: ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ⁰. Example: type women³. For two references: women¹,² . Do not use the editor's superscript button, Shopify removes it when you save." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Add a benefit. For a reference, type a raised number like women³.</p>", "info": "Citations: copy a raised number ¹²³⁴⁵⁶⁷⁸⁹⁰ into the text. Example: women³ or women¹,²" },
+    { "type": "select", "id": "type_preset", "label": "Text style", "default": "rte", "options": [ {"value":"rte","label":"Default"}, {"value":"paragraph","label":"Paragraph"}, {"value":"text-subheading","label":"Subheading"}, {"value":"h1","label":"Heading 1"}, {"value":"h2","label":"Heading 2"}, {"value":"h3","label":"Heading 3"}, {"value":"h4","label":"Heading 4"}, {"value":"h5","label":"Heading 5"}, {"value":"h6","label":"Heading 6"}, {"value":"custom","label":"Custom"} ] },
+    { "type": "select", "id": "font", "label": "Font", "default": "var(--font-body--family)", "options": [ {"value":"var(--font-body--family)","label":"Body"}, {"value":"var(--font-heading--family)","label":"Heading"} ], "visible_if": "{{ block.settings.type_preset == 'custom' }}" },
+    { "type": "select", "id": "font_weight", "label": "Font weight", "default": "", "options": [ {"value":"","label":"Inherit"}, {"value":"300","label":"Light"}, {"value":"400","label":"Regular"}, {"value":"500","label":"Medium"}, {"value":"600","label":"Semi-bold"}, {"value":"700","label":"Bold"}, {"value":"800","label":"Extra bold"}, {"value":"900","label":"Black"} ], "visible_if": "{{ block.settings.type_preset == 'custom' }}" },
+    { "type": "range", "id": "font_size", "label": "Font size (desktop)", "min": 12, "max": 100, "step": 1, "unit": "px", "default": 15, "visible_if": "{{ block.settings.type_preset == 'custom' }}" },
+    { "type": "range", "id": "font_size_mobile", "label": "Font size (mobile)", "min": 12, "max": 60, "step": 1, "unit": "px", "default": 15, "visible_if": "{{ block.settings.type_preset == 'custom' }}" },
+    { "type": "select", "id": "line_height", "label": "Line height", "default": "normal", "options": [ {"value":"tight","label":"Tight"}, {"value":"normal","label":"Normal"}, {"value":"loose","label":"Loose"} ], "visible_if": "{{ block.settings.type_preset == 'custom' }}" },
+    { "type": "select", "id": "text_color", "label": "Text colour", "default": "text", "options": [ {"value":"text","label":"Text"}, {"value":"subtext","label":"Subtext"} ] }
+  ],
+  "presets": [ { "name": "Lumeia List Item" } ]
+}
+{% endschema %}

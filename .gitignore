@@ -1,0 +1,8 @@
+.shopify/
+.DS_Store
+node_modules/
+
+# mobile screenshot outputs (test artifacts)
+/*.png
+scripts/*.png
+.shots/

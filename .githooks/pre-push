@@ -1,0 +1,18 @@
+#!/bin/sh
+# Pre-push guard: refuse to push to a branch whose PR is already MERGED.
+# One PR = one merge. Follow-up work goes on a fresh branch off main, never
+# back onto a merged branch (which re-creates stale remotes and orphans commits).
+# Emergency override: git push --no-verify
+branch=$(git rev-parse --abbrev-ref HEAD)
+[ "$branch" = "main" ] && exit 0
+state=$(gh pr view "$branch" --json state --jq .state 2>/dev/null)
+if [ "$state" = "MERGED" ]; then
+  echo "" >&2
+  echo "  ✗ push blocked: the PR for '$branch' is already MERGED." >&2
+  echo "  One PR = one merge. Start follow-up work on a fresh branch off main:" >&2
+  echo "    git checkout main && git pull && git checkout -b <new-branch>" >&2
+  echo "  (Emergency override: git push --no-verify)" >&2
+  echo "" >&2
+  exit 1
+fi
+exit 0

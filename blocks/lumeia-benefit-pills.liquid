@@ -1,0 +1,121 @@
+{% comment %}
+  Lumeia Benefit Pills — a container for "Pill" child blocks (_lumeia-pill). The pills carry
+  their own colours, so the container itself is transparent (no colour scheme background).
+  Layout is chosen per device: Row (wraps), Stacked (1 per row), or a fixed grid (2 / 3 / 4 per
+  row) for the "two pills side by side" look. Pebble-grade: reuses the theme's spacing-style /
+  size-style snippets + native animation. Add this block, then add Pill blocks inside it.
+  Editable, translatable, RTL-safe (logical flex/grid + symmetric padding).
+{% endcomment %}
+{%- liquid
+  assign s = block.settings
+  assign root_element = 'div'
+  if s.animation_type != 'none' and settings.animations_enabled
+    assign root_element = 'motion-component'
+  endif
+-%}
+<{{ root_element }}
+  class="lumeia-pills spacing-style size-style lumeia-pills--{{ s.layout }} lumeia-pills--m-{{ s.layout_mobile }} lumeia-pills--{{ s.alignment }} lumeia-pills--m-{{ s.alignment_mobile }}"
+  style="--pills-gap: {{ s.gap }}px; --pills-gap-m: {{ s.gap_mobile }}px;{% render 'spacing-style', settings: s %}{% render 'size-style', settings: s %}"
+  {% if s.animation_type != 'none' %}data-motion="{{ s.animation_type }}" data-motion-delay="{{ s.animation_delay }}"{% endif %}
+  {{ block.shopify_attributes }}
+>
+  <ul class="lumeia-pills__list">{% content_for 'blocks' %}</ul>
+</{{ root_element }}>
+
+{% stylesheet %}
+.lumeia-pills { display: block; background: transparent; }
+.lumeia-pills__list { display: flex; gap: var(--pills-gap); list-style: none; margin: 0; padding: 0; }
+
+/* desktop layouts */
+.lumeia-pills--row .lumeia-pills__list { flex-flow: row wrap; align-items: center; }
+.lumeia-pills--column .lumeia-pills__list { flex-direction: column; flex-wrap: nowrap; }
+.lumeia-pills--two .lumeia-pills__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.lumeia-pills--three .lumeia-pills__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.lumeia-pills--four .lumeia-pills__list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+/* a lone last pill in a 2-up grid centres across both columns (e.g. 3 pills -> 2 + 1 centred) */
+.lumeia-pills--two .lumeia-pills__list > .lumeia-pill:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; }
+
+/* alignment (Row + Stacked; grid columns fill the width) */
+.lumeia-pills--row.lumeia-pills--left .lumeia-pills__list { justify-content: flex-start; }
+.lumeia-pills--row.lumeia-pills--center .lumeia-pills__list { justify-content: center; }
+.lumeia-pills--row.lumeia-pills--right .lumeia-pills__list { justify-content: flex-end; }
+.lumeia-pills--column.lumeia-pills--left .lumeia-pills__list { align-items: flex-start; }
+.lumeia-pills--column.lumeia-pills--center .lumeia-pills__list { align-items: center; }
+.lumeia-pills--column.lumeia-pills--right .lumeia-pills__list { align-items: flex-end; }
+
+/* a single pill — content-width in flex modes; in a grid each cell stretches to equal width (justify-self defaults to stretch) */
+.lumeia-pill {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  background: var(--pill-bg); color: var(--pill-fg);
+  border: var(--pill-border, none);
+  border-radius: var(--pill-radius);
+  padding: var(--pill-pad-y) var(--pill-pad-x);
+  margin: 0; max-width: 100%;
+}
+.lumeia-pill--icon-top { flex-direction: column; gap: 3px; text-align: center; }
+.lumeia-pills .lumeia-pill__text { color: var(--pill-fg); margin: 0; }
+/* Custom typography + Subheading font: carry the brand subheading styling (uppercase + letter-spacing)
+   so it matches the Subheading preset, while the merchant still controls the font size. */
+.lumeia-pills .lumeia-pill__text--sub { text-transform: uppercase; letter-spacing: 0.12em; }
+.lumeia-pill__icon { display: inline-flex; align-items: center; flex: 0 0 auto; }
+.lumeia-pill__icon .icon { display: block; }
+
+@media (max-width: 749px) {
+  .lumeia-pills__list { gap: var(--pills-gap-m); }
+  .lumeia-pills--m-row .lumeia-pills__list { display: flex; flex-flow: row wrap; align-items: center; }
+  .lumeia-pills--m-column .lumeia-pills__list { display: flex; flex-direction: column; flex-wrap: nowrap; }
+  .lumeia-pills--m-two .lumeia-pills__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lumeia-pills--m-three .lumeia-pills__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lumeia-pills--m-two .lumeia-pills__list > .lumeia-pill:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; }
+  .lumeia-pills--m-row.lumeia-pills--m-left .lumeia-pills__list { justify-content: flex-start; }
+  .lumeia-pills--m-row.lumeia-pills--m-center .lumeia-pills__list { justify-content: center; }
+  .lumeia-pills--m-row.lumeia-pills--m-right .lumeia-pills__list { justify-content: flex-end; }
+  .lumeia-pills--m-column.lumeia-pills--m-left .lumeia-pills__list { align-items: flex-start; }
+  .lumeia-pills--m-column.lumeia-pills--m-center .lumeia-pills__list { align-items: center; }
+  .lumeia-pills--m-column.lumeia-pills--m-right .lumeia-pills__list { align-items: flex-end; }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Lumeia Benefit Pills",
+  "tag": null,
+  "blocks": [ { "type": "_lumeia-pill" } ],
+  "settings": [
+    { "type": "header", "content": "Layout" },
+    { "type": "select", "id": "layout", "label": "Layout (desktop)", "default": "row", "options": [ {"value":"row","label":"Row (wraps)"}, {"value":"column","label":"Stacked (1 per row)"}, {"value":"two","label":"2 per row"}, {"value":"three","label":"3 per row"}, {"value":"four","label":"4 per row"} ] },
+    { "type": "select", "id": "layout_mobile", "label": "Layout (mobile)", "default": "row", "options": [ {"value":"row","label":"Row (wraps)"}, {"value":"column","label":"Stacked (1 per row)"}, {"value":"two","label":"2 per row"}, {"value":"three","label":"3 per row"} ] },
+    { "type": "select", "id": "alignment", "label": "Alignment (desktop)", "default": "left", "options": [ {"value":"left","label":"Left"}, {"value":"center","label":"Center"}, {"value":"right","label":"Right"} ], "info": "Applies to Row and Stacked layouts." },
+    { "type": "select", "id": "alignment_mobile", "label": "Alignment (mobile)", "default": "center", "options": [ {"value":"left","label":"Left"}, {"value":"center","label":"Center"}, {"value":"right","label":"Right"} ] },
+    { "type": "range", "id": "gap", "label": "Gap between pills (desktop)", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 10 },
+    { "type": "range", "id": "gap_mobile", "label": "Gap between pills (mobile)", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 8 },
+    { "type": "select", "id": "width", "label": "Width (desktop)", "default": "fill", "options": [ {"value":"fit-content","label":"Fit"}, {"value":"fill","label":"Fill"} ] },
+    { "type": "select", "id": "width_mobile", "label": "Width (mobile)", "default": "fill", "options": [ {"value":"fit-content","label":"Fit"}, {"value":"fill","label":"Fill"} ] },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "select", "id": "device", "label": "Device", "default": "desktop", "options": [ {"value":"desktop","label":"Desktop"}, {"value":"mobile","label":"Mobile"} ] },
+    { "type": "range", "id": "padding-block-start", "label": "Top", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'desktop' }}" },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'desktop' }}" },
+    { "type": "range", "id": "padding-inline-start", "label": "Left", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'desktop' }}" },
+    { "type": "range", "id": "padding-inline-end", "label": "Right", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'desktop' }}" },
+    { "type": "range", "id": "padding-block-start-mobile", "label": "Top", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'mobile' }}" },
+    { "type": "range", "id": "padding-block-end-mobile", "label": "Bottom", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'mobile' }}" },
+    { "type": "range", "id": "padding-inline-start-mobile", "label": "Left", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'mobile' }}" },
+    { "type": "range", "id": "padding-inline-end-mobile", "label": "Right", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'mobile' }}" },
+
+    { "type": "header", "content": "Animation", "visible_if": "{{ settings.animations_enabled == true }}" },
+    { "type": "select", "id": "animation_type", "label": "Type", "default": "none", "options": [ {"value":"none","label":"None"}, {"value":"fade-in","label":"Fade in"}, {"value":"fade-up","label":"Fade up"}, {"value":"slide-in-left","label":"Slide in left"}, {"value":"slide-in-right","label":"Slide in right"} ], "visible_if": "{{ settings.animations_enabled == true }}" },
+    { "type": "range", "id": "animation_delay", "label": "Delay", "min": 0, "max": 2000, "step": 50, "unit": "ms", "default": 250, "visible_if": "{{ block.settings.animation_type != 'none' and settings.animations_enabled == true }}" }
+  ],
+  "presets": [
+    {
+      "name": "Lumeia Benefit Pills",
+      "blocks": [
+        { "type": "_lumeia-pill", "settings": { "text": "Ships across the GCC" } },
+        { "type": "_lumeia-pill", "settings": { "text": "Independently Tested" } },
+        { "type": "_lumeia-pill", "settings": { "text": "Halal Certified" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

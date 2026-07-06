@@ -1,0 +1,34 @@
+{% comment %}
+  Child block of lumeia-trust-stack: one payment logo with per-logo Kuwait visibility.
+  Renders nothing if no image, or if the storefront country fails its visibility rule.
+  Sizing (height, gap) is inherited from the parent's CSS vars on .lumeia-trust__logos.
+{% endcomment %}
+{%- liquid
+  assign s = block.settings
+  assign cc = localization.country.iso_code
+  assign show = false
+  if s.visibility == 'all'
+    assign show = true
+  elsif s.visibility == 'kw_only' and cc == 'KW'
+    assign show = true
+  elsif s.visibility == 'hide_kw' and cc != 'KW'
+    assign show = true
+  endif
+  if request.design_mode
+    assign show = true
+  endif
+-%}
+{%- if s.logo != blank and show -%}
+  <span class="lumeia-trust__logo" {{ block.shopify_attributes }}>{{ s.logo | image_url: width: 240 | image_tag: alt: s.logo.alt, loading: 'lazy', widths: '120,240' }}</span>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Payment logo",
+  "tag": null,
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo image" },
+    { "type": "select", "id": "visibility", "label": "Visibility", "default": "all", "info": "Based on the visitor's storefront country. All countries / Kuwait only (e.g. KNET) / Hide in Kuwait (e.g. AmEx). All logos are shown in the editor so you can edit them; the rule applies on the live store.", "options": [ {"value":"all","label":"All countries"}, {"value":"kw_only","label":"Kuwait only"}, {"value":"hide_kw","label":"Hide in Kuwait"} ] }
+  ],
+  "presets": [ { "name": "Payment logo" } ]
+}
+{% endschema %}

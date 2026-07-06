@@ -1,0 +1,123 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "t:names.header",
+  "sections": {
+    "announcement_bar_eCtQCj": {
+      "type": "announcement-bar",
+      "blocks": {
+        "text_wkVmcd": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Collagen Welcome Kit | <a href=\"#quiz\" title=\"Take our quiz\"><strong>Take our quiz→</strong></a></p>",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_shape_color": "",
+            "highlight_text_color": "",
+            "type_preset": "h5",
+            "font": "var(--font-body--family)",
+            "font_weight": "",
+            "font_size": 15,
+            "font_size_mobile": 15,
+            "line_height": "normal",
+            "text_color": "text",
+            "text_color_gradient": "",
+            "disable_line_break_mobile": false,
+            "width": "fit-content",
+            "text_alignment": "left",
+            "width_mobile": "fit-content",
+            "text_alignment_mobile": "left",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "mobile-padding-scale": 80,
+            "animation_type": "none",
+            "animation_delay": 250
+          },
+          "blocks": {}
+        },
+        "text_9RG3tm": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Protein Welcome Kit | <a href=\"#quiz\" title=\"Take our quiz\"><strong>Take our quiz →</strong></a></p>",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_shape_color": "",
+            "highlight_text_color": "",
+            "type_preset": "h5",
+            "font": "var(--font-body--family)",
+            "font_weight": "",
+            "font_size": 15,
+            "font_size_mobile": 15,
+            "line_height": "normal",
+            "text_color": "text",
+            "text_color_gradient": "",
+            "disable_line_break_mobile": false,
+            "width": "fit-content",
+            "text_alignment": "left",
+            "width_mobile": "fit-content",
+            "text_alignment_mobile": "left",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "mobile-padding-scale": 80,
+            "animation_type": "none",
+            "animation_delay": 250
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_wkVmcd",
+        "text_9RG3tm"
+      ],
+      "name": "t:names.announcement_bar",
+      "settings": {
+        "content_width": 80,
+        "autoplay": true,
+        "autoplay_speed": 3,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 8,
+        "padding-block-end": 8
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu",
+        "menu_mobile": "main-menu",
+        "header_layout": "logo-center",
+        "menu_trigger": "click",
+        "sticky_header": "always",
+        "enable_search_form": false,
+        "search_form_style": "transparent",
+        "customer_account_menu": "customer-account-main-menu",
+        "enable_social_media_icons": false,
+        "enable_language_selector": true,
+        "enable_country_selector": true,
+        "color_scheme": "scheme-6",
+        "show_sperator_line": false,
+        "hide_sperator_line_for_templates": "",
+        "enable_dividers": false,
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
+    }
+  },
+  "order": [
+    "announcement_bar_eCtQCj",
+    "header"
+  ]
+}

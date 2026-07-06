@@ -1,0 +1,86 @@
+{%- doc -%}
+  Lumeia localization panel (Feel-style, compact). A scoped variant of Pebble's localization-form,
+  so we can lay it out like wearefeel.com WITHOUT editing the core snippet (CONVENTIONS rule 3).
+  Used both in the header dropdown popover (desktop hover) and at the top of the mobile drawer.
+
+  Layout (both contexts), label left / value right, one row each, vertically centred:
+    Country:   <flag> Kuwait  <check>
+    Language:  English | العربية
+  Country is a single display row today (Kuwait is the only market); when GCC markets open it
+  becomes a dropdown. Language switches via native submit buttons (name="language_code"), which
+  post identically to Shopify's own localization-form select — no custom JS, no Pebble-core edit.
+
+  @param {string} block_id - Unique id for the form.
+  @param {boolean} show_country - Show the country row.
+  @param {boolean} show_language - Show the language toggle.
+{%- enddoc -%}
+{%- liquid
+  assign show_country = show_country | default: true, allow_false: true
+  assign show_language = show_language | default: true, allow_false: true
+  assign form_id = 'LumeiaLocalizationForm-' | append: block_id
+  assign cur_country = localization.country
+-%}
+<localization-form-component
+  ref="localizationForm"
+  class="lumeia-locform flex flex-col"
+>
+  {%- assign localization_label = 'content.localization_region_and_language' | t -%}
+  {%- form 'localization', id: form_id, class: 'localization-form lumeia-locform__form w-full flex flex-col', ref: 'form', aria-label: localization_label -%}
+    {%- if show_country and cur_country -%}
+      <div class="lumeia-locform__section lumeia-locform__section--country flex items-center justify-between">
+        <span class="lumeia-locform__label">{{ 'content.choose_region' | t }}:</span>
+        <div class="lumeia-locform__value flex items-center">
+          <span
+            class="icon-flag lumeia-locform__flag block shrink-0"
+            style="background-image: url({{ cur_country | image_url: width: 40 }});"
+          ></span>
+          <span class="lumeia-locform__name">{{ cur_country.iso_code }}</span>
+          {% render 'icon', icon: 'check', size: 'small', class: 'lumeia-locform__check shrink-0' %}
+        </div>
+      </div>
+      <input type="hidden" name="country_code" value="{{ cur_country.iso_code }}" ref="countryInput">
+    {%- endif -%}
+
+    {%- if show_language and localization.available_languages.size > 1 -%}
+      <div class="lumeia-locform__section lumeia-locform__section--lang flex items-center justify-between">
+        <span class="lumeia-locform__label">{{ 'content.language' | t }}:</span>
+        <div class="lumeia-locform__langs flex items-center">
+          {%- liquid
+            # Keep the visitor on the SAME page when they switch language, instead of sending them to
+            # the locale homepage (language.root_url). Strip the active locale prefix from request.path
+            # if Shopify included it, then prepend the target locale's prefix per language below.
+            assign cur_lang_root = localization.language.root_url
+            assign relative_path = request.path
+            assign prefix_len = cur_lang_root | size
+            assign path_head = relative_path | slice: 0, prefix_len
+            if cur_lang_root != '/' and path_head == cur_lang_root
+              assign relative_path = relative_path | remove_first: cur_lang_root
+            endif
+          -%}
+          {%- for language in localization.available_languages -%}
+            {%- if language.iso_code == localization.language.iso_code -%}
+              <span lang="{{ language.iso_code }}" class="lumeia-locform__lang is-active" aria-current="true">{{ language.endonym_name | capitalize }}</span>
+            {%- else -%}
+              {%- comment -%} Link to the CURRENT page in the target locale (keeps the visitor in place).
+                A link tap navigates reliably on every device, unlike the form submit which the mobile
+                drawer dialog swallowed. {%- endcomment -%}
+              {%- liquid
+                if relative_path == blank or relative_path == '/'
+                  assign target_url = language.root_url
+                elsif language.root_url == '/'
+                  assign target_url = relative_path
+                else
+                  assign target_url = language.root_url | append: relative_path
+                endif
+              -%}
+              <a href="{{ target_url }}" lang="{{ language.iso_code }}" hreflang="{{ language.iso_code }}" class="lumeia-locform__lang">{{ language.endonym_name | capitalize }}</a>
+            {%- endif -%}
+            {%- unless forloop.last -%}
+              <span class="lumeia-locform__sep" aria-hidden="true"></span>
+            {%- endunless -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endform -%}
+</localization-form-component>

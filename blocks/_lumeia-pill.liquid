@@ -1,0 +1,79 @@
+{% comment %}
+  Lumeia Pill — a single benefit pill (icon + text in a rounded chip). Private child of
+  "Lumeia Benefit Pills". Icon can be an uploaded image or a preset, and can sit inline-start
+  or on top (Anthros-style). Text uses the text-subheading preset by default, so it renders
+  Space Grotesk on English and Almarai on Arabic automatically (the --font-subheading--family
+  rules in lumeia-custom.css) — editable, translatable, RTL-safe.
+{% endcomment %}
+{%- liquid
+  assign s = block.settings
+  assign has_icon = false
+  if s.show_icon
+    if s.icon_image_upload != blank or s.icon != 'none'
+      assign has_icon = true
+    endif
+  endif
+-%}
+<li
+  class="lumeia-pill lumeia-pill--icon-{{ s.icon_position }}"
+  style="
+    --pill-bg: {{ s.background | default: '#e9f4dc' }};
+    --pill-fg: {{ s.text_color | default: '#44190e' }};
+    --pill-radius: {{ s.border_radius }}px;
+    --pill-pad-y: {{ s.padding_block }}px;
+    --pill-pad-x: {{ s.padding_inline }}px;
+    {% if s.border_width > 0 %}--pill-border: {{ s.border_width }}px solid {{ s.border_color | default: 'rgba(0,0,0,0.12)' }};{% endif %}
+  "
+  {{ block.shopify_attributes }}
+>
+  {%- if has_icon -%}
+    <span class="lumeia-pill__icon"{% if s.icon_color != blank and s.icon_color != 'rgba(0,0,0,0)' %} style="color: {{ s.icon_color }};"{% endif %}>
+      {%- render 'icon-or-image',
+        icon: s.icon,
+        image_upload: s.icon_image_upload,
+        icon_size: 'custom-size',
+        width: s.icon_width,
+        width_mobile: s.icon_width_mobile
+      -%}
+    </span>
+  {%- endif -%}
+  <span
+    class="lumeia-pill__text {{ s.type_preset }}{% if s.type_preset == 'custom' %} custom-typography custom-font-size{% if s.font == 'var(--font-subheading--family)' %} lumeia-pill__text--sub{% endif %}{% endif %}"
+    style="{% render 'typography-style', preset: s.type_preset, font_family: s.font, font_weight: s.font_weight, font_size: s.font_size, font_size_mobile: s.font_size_mobile, line_height: s.line_height %}"
+  >{{ s.text }}</span>
+</li>
+{% schema %}
+{
+  "name": "Pill",
+  "tag": null,
+  "settings": [
+    { "type": "inline_richtext", "id": "text", "label": "Text", "default": "Benefit", "info": "Supports bold, italic and links, like a Pebble text block." },
+
+    { "type": "header", "content": "Icon" },
+    { "type": "checkbox", "id": "show_icon", "label": "Show icon", "default": true },
+    { "type": "select", "id": "icon_position", "label": "Icon position", "default": "inline-start", "options": [ {"value":"inline-start","label":"Before text"}, {"value":"top","label":"Above text"} ] },
+    { "type": "image_picker", "id": "icon_image_upload", "label": "Custom icon (upload your own)", "info": "Optional. If empty, the chosen icon below is used." },
+    { "type": "select", "id": "icon", "label": "Icon (if no image uploaded)", "default": "check", "options": [ {"value":"none","label":"None"}, {"value":"check","label":"Check"}, {"value":"check-circle","label":"Check circle"}, {"value":"heart","label":"Heart"}, {"value":"heart-beat","label":"Heart beat"}, {"value":"star","label":"Star"}, {"value":"globe","label":"Globe"}, {"value":"gift","label":"Gift"}, {"value":"lightning","label":"Lightning"}, {"value":"clock","label":"Clock"}, {"value":"truck","label":"Truck"}, {"value":"package","label":"Package"}, {"value":"paper-plane","label":"Paper plane"}, {"value":"waves","label":"Waves"}, {"value":"umbrella","label":"Umbrella"}, {"value":"magic-wand","label":"Magic wand"}, {"value":"tag","label":"Tag"}, {"value":"padlock","label":"Padlock"}, {"value":"plus","label":"Plus"}, {"value":"map-pin","label":"Map pin"} ] },
+    { "type": "range", "id": "icon_width", "label": "Icon size (desktop)", "min": 10, "max": 48, "step": 1, "unit": "px", "default": 16 },
+    { "type": "range", "id": "icon_width_mobile", "label": "Icon size (mobile)", "min": 10, "max": 48, "step": 1, "unit": "px", "default": 15 },
+    { "type": "color", "id": "icon_color", "label": "Icon colour", "info": "Leave empty to match the text colour." },
+
+    { "type": "header", "content": "Colours & shape" },
+    { "type": "color", "id": "background", "label": "Pill background", "default": "#e9f4dc" },
+    { "type": "color", "id": "text_color", "label": "Text colour", "default": "#44190e" },
+    { "type": "range", "id": "border_radius", "label": "Corner radius", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 100 },
+    { "type": "range", "id": "padding_block", "label": "Padding (top/bottom)", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 6 },
+    { "type": "range", "id": "padding_inline", "label": "Padding (left/right)", "min": 0, "max": 60, "step": 1, "unit": "px", "default": 14 },
+    { "type": "range", "id": "border_width", "label": "Border width", "min": 0, "max": 6, "step": 1, "unit": "px", "default": 0 },
+    { "type": "color", "id": "border_color", "label": "Border colour", "visible_if": "{{ block.settings.border_width > 0 }}" },
+
+    { "type": "header", "content": "Typography" },
+    { "type": "select", "id": "type_preset", "label": "Text style", "default": "text-subheading", "options": [ {"value":"rte","label":"Default"}, {"value":"paragraph","label":"Paragraph"}, {"value":"text-subheading","label":"Subheading (brand caps)"}, {"value":"h1","label":"Heading 1"}, {"value":"h2","label":"Heading 2"}, {"value":"h3","label":"Heading 3"}, {"value":"h4","label":"Heading 4"}, {"value":"h5","label":"Heading 5"}, {"value":"h6","label":"Heading 6"}, {"value":"custom","label":"Custom"} ] },
+    { "type": "select", "id": "font", "label": "Font", "default": "var(--font-subheading--family)", "options": [ {"value":"var(--font-body--family)","label":"Body"}, {"value":"var(--font-heading--family)","label":"Heading"}, {"value":"var(--font-subheading--family)","label":"Subheading"} ], "visible_if": "{{ block.settings.type_preset == 'custom' }}" },
+    { "type": "select", "id": "font_weight", "label": "Font weight", "default": "", "options": [ {"value":"","label":"Inherit"}, {"value":"300","label":"Light"}, {"value":"400","label":"Regular"}, {"value":"500","label":"Medium"}, {"value":"600","label":"Semi-bold"}, {"value":"700","label":"Bold"} ], "visible_if": "{{ block.settings.type_preset == 'custom' }}" },
+    { "type": "range", "id": "font_size", "label": "Font size (desktop)", "min": 9, "max": 40, "step": 1, "unit": "px", "default": 12, "visible_if": "{{ block.settings.type_preset == 'custom' }}" },
+    { "type": "range", "id": "font_size_mobile", "label": "Font size (mobile)", "min": 9, "max": 40, "step": 1, "unit": "px", "default": 12, "visible_if": "{{ block.settings.type_preset == 'custom' }}" },
+    { "type": "select", "id": "line_height", "label": "Line height", "default": "normal", "options": [ {"value":"tight","label":"Tight"}, {"value":"normal","label":"Normal"}, {"value":"loose","label":"Loose"} ], "visible_if": "{{ block.settings.type_preset == 'custom' }}" }
+  ]
+}
+{% endschema %}

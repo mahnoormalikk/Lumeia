@@ -1,0 +1,36 @@
+{% comment %}
+  Lumeia Benefit List — a container for Lumeia List Items, just like Pebble's native icon list.
+  Add this once, then add "Lumeia List Item" blocks inside it. It controls the spacing between
+  the items (so they sit tight, not loose like standalone blocks in the buy box). Reuses the
+  theme's own gap and spacing handling.
+{% endcomment %}
+{%- if block.blocks.size > 0 -%}
+  <ul
+    class="icon-list-block list-unstyled flex flex-col gap-style spacing-style"
+    style="{% render 'gap-style', settings: block.settings %}{% render 'spacing-style', settings: block.settings %}"
+    {{ block.shopify_attributes }}
+  >
+    {% content_for 'blocks' %}
+  </ul>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Lumeia Benefit List",
+  "tag": null,
+  "blocks": [ { "type": "lumeia-list-item" } ],
+  "settings": [
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "row_gap", "label": "Gap between items (desktop)", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 12 },
+    { "type": "range", "id": "row_gap_mobile", "label": "Gap between items (mobile)", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 12 },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding-block-start", "label": "Top (desktop)", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom (desktop)", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding-block-start-mobile", "label": "Top (mobile)", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding-block-end-mobile", "label": "Bottom (mobile)", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0 }
+  ],
+  "presets": [
+    { "name": "Lumeia Benefit List", "blocks": [ {"type":"lumeia-list-item"}, {"type":"lumeia-list-item"}, {"type":"lumeia-list-item"} ] }
+  ]
+}
+{% endschema %}

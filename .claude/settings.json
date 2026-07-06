@@ -1,0 +1,19 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-live-push.sh\"" }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "echo 'Lumeia theme repo. Follow CONVENTIONS.md + PLAYBOOK.md. Dev theme 187485421948 (work here); never push to live 186928857468 (Stelios publishes). Loop: /status /scope-change /build /review /verify /ship.'" }
+        ]
+      }
+    ]
+  }
+}

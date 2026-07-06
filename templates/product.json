@@ -1,0 +1,1124 @@
+{
+  "sections": {
+    "main": {
+      "type": "product-information",
+      "blocks": {
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_style": "carousel",
+            "grid_layout": "grid-with-thumbnail",
+            "grid_gap": 10,
+            "carousel_thumbnail": "inside",
+            "thumbnail_media_aspect_ratio": "auto",
+            "thumbnail_media_aspect_ratio_mobile": "inherit",
+            "media_aspect_ratio": "auto",
+            "media_radius": 20,
+            "video_autoplay": false,
+            "enable_zoom": true,
+            "hide_variants": false,
+            "extend_media": false
+          },
+          "blocks": {}
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": {
+            "row_gap": 24,
+            "row_gap_mobile": 20,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {
+            "breadcrumbs_4zRHqF": {
+              "type": "_breadcrumbs",
+              "name": "t:names.breadcrumbs",
+              "disabled": true,
+              "settings": {
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "mobile-padding-scale": 80
+              },
+              "blocks": {}
+            },
+            "product_information_group_zx4NRb": {
+              "type": "_product-information-group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "column_gap": 12,
+                "row_gap": 20,
+                "column_gap_mobile": 12,
+                "row_gap_mobile": 16,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "product_information_group_VXMCmd": {
+                  "type": "_product-information-group",
+                  "name": "t:names.group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "column_gap": 12,
+                    "row_gap": 12,
+                    "column_gap_mobile": 12,
+                    "row_gap_mobile": 12,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "product_badges_n4QFpn": {
+                      "type": "_product-badges",
+                      "name": "t:names.product_badges",
+                      "settings": {
+                        "show_custom_badges": true,
+                        "show_sold_out_badge": true,
+                        "show_sale_badge": true,
+                        "sale_badge_type": "percentage",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    },
+                    "text_jhbnka": {
+                      "type": "text",
+                      "name": "t:names.subheading",
+                      "settings": {
+                        "text": "<p>Featuring OmniCol™ 120  ·  Premium European Collagen by Essentia</p>",
+                        "highlight_style": "none",
+                        "highlight_font_style": "italic",
+                        "highlight_shape_color": "#b88a8a",
+                        "highlight_text_color": "",
+                        "type_preset": "text-subheading",
+                        "font": "var(--font-heading--family)",
+                        "font_weight": "",
+                        "font_size": 15,
+                        "font_size_mobile": 15,
+                        "line_height": "normal",
+                        "text_color": "text",
+                        "text_color_gradient": "",
+                        "disable_line_break_mobile": false,
+                        "width": "fit-content",
+                        "text_alignment": "left",
+                        "width_mobile": "fit-content",
+                        "text_alignment_mobile": "left",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0,
+                        "mobile-padding-scale": 80,
+                        "animation_type": "none",
+                        "animation_delay": 250
+                      },
+                      "blocks": {}
+                    },
+                    "product_title_xJXQRU": {
+                      "type": "_product-title",
+                      "name": "t:names.product_title",
+                      "settings": {
+                        "type_preset": "h1",
+                        "html_tag": "h1",
+                        "font": "var(--font-heading--family)",
+                        "font_weight": "",
+                        "font_size": 15,
+                        "font_size_mobile": 15,
+                        "line_height": "normal",
+                        "text_color": "text",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    },
+                    "icon_list_GHaB7g": {
+                      "type": "icon-list",
+                      "name": "t:names.icon_list",
+                      "settings": {
+                        "row_gap": 12,
+                        "row_gap_mobile": 12,
+                        "item_icon_style": "standard",
+                        "item_vertical_alignment": "center",
+                        "device": "desktop",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0,
+                        "padding-block-start-mobile": 0,
+                        "padding-block-end-mobile": 0,
+                        "padding-inline-start-mobile": 0,
+                        "padding-inline-end-mobile": 0
+                      },
+                      "blocks": {
+                        "list_item_Ktn8EG": {
+                          "type": "_list-item",
+                          "name": "t:names.list_item",
+                          "settings": {
+                            "icon": "lightning",
+                            "icon_size": "large",
+                            "icon_width": 24,
+                            "icon_width_mobile": 24,
+                            "icon_color": "#fba440",
+                            "icon_bg_color": "rgba(0,0,0,0)",
+                            "text": "<em>Get glowy skin, shiny hair and healthy nails by fixing what's missing from within.</em>",
+                            "type_preset": "custom",
+                            "font": "var(--font-body--family)",
+                            "font_weight": "",
+                            "font_size": 15,
+                            "font_size_mobile": 15,
+                            "line_height": "normal",
+                            "text_color": "text",
+                            "text_color_gradient": ""
+                          },
+                          "blocks": {}
+                        }
+                      },
+                      "block_order": [
+                        "list_item_Ktn8EG"
+                      ]
+                    },
+                    "product_price_3kkinj": {
+                      "type": "_product-price",
+                      "name": "t:names.product_price",
+                      "disabled": true,
+                      "settings": {
+                        "show_installments": false,
+                        "show_tax_info": false,
+                        "type_preset": "h4",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "product_badges_n4QFpn",
+                    "text_jhbnka",
+                    "product_title_xJXQRU",
+                    "icon_list_GHaB7g",
+                    "product_price_3kkinj"
+                  ]
+                },
+                "product_description_DwV47J": {
+                  "type": "_product-description",
+                  "name": "t:names.description",
+                  "disabled": true,
+                  "settings": {
+                    "text": "{{ closest.product.description }}",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "subtext",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "text_N3JhYd": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Your body is already telling you what it needs. Your skin's firmness fading in your 30s, the dryness that moisturisers can't reach, the nails that won't stop splitting. That's collagen declining, and it starts around 25.</p><p>Complete Collagen replaces what your body makes less of every year. One sachet, every morning, and your skin, hair, and nails get the full support they've been missing. Not a quick fix. A daily reset that builds over weeks and keeps building over months.</p>",
+                    "highlight_style": "none",
+                    "highlight_font_style": "italic",
+                    "highlight_shape_color": "",
+                    "highlight_text_color": "",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_weight": "",
+                    "font_size": 15,
+                    "font_size_mobile": 15,
+                    "line_height": "normal",
+                    "text_color": "text",
+                    "text_color_gradient": "",
+                    "disable_line_break_mobile": false,
+                    "width": "fit-content",
+                    "text_alignment": "left",
+                    "width_mobile": "fit-content",
+                    "text_alignment_mobile": "left",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "mobile-padding-scale": 80,
+                    "animation_type": "none",
+                    "animation_delay": 250
+                  },
+                  "blocks": {}
+                },
+                "icon_list_7jAnnV": {
+                  "type": "icon-list",
+                  "name": "t:names.icon_list",
+                  "settings": {
+                    "row_gap": 12,
+                    "row_gap_mobile": 12,
+                    "item_icon_style": "circle",
+                    "item_vertical_alignment": "center",
+                    "device": "desktop",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "padding-block-start-mobile": 0,
+                    "padding-block-end-mobile": 0,
+                    "padding-inline-start-mobile": 0,
+                    "padding-inline-end-mobile": 0
+                  },
+                  "blocks": {
+                    "list_item_eLDTPp": {
+                      "type": "_list-item",
+                      "name": "t:names.list_item",
+                      "settings": {
+                        "icon": "check",
+                        "icon_size": "small",
+                        "icon_width": 24,
+                        "icon_width_mobile": 24,
+                        "icon_color": "#ffa440",
+                        "icon_bg_color": "rgba(0,0,0,0)",
+                        "text": "One of the highest collagen doses you'll find: <strong>10,500mg per serving</strong>",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_weight": "",
+                        "font_size": 17,
+                        "font_size_mobile": 15,
+                        "line_height": "normal",
+                        "text_color": "text",
+                        "text_color_gradient": ""
+                      },
+                      "blocks": {}
+                    },
+                    "list_item_jU7tr3": {
+                      "type": "_list-item",
+                      "name": "t:names.list_item",
+                      "settings": {
+                        "icon": "check",
+                        "icon_size": "small",
+                        "icon_width": 24,
+                        "icon_width_mobile": 24,
+                        "icon_color": "#ffa440",
+                        "icon_bg_color": "rgba(0,0,0,0)",
+                        "text": "<strong>Skin, hair, and nails in one sachet: 10 active ingredients working together</strong>",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_weight": "",
+                        "font_size": 17,
+                        "font_size_mobile": 15,
+                        "line_height": "normal",
+                        "text_color": "text",
+                        "text_color_gradient": ""
+                      },
+                      "blocks": {}
+                    },
+                    "list_item_LFCFXc": {
+                      "type": "_list-item",
+                      "name": "t:names.list_item",
+                      "settings": {
+                        "icon": "check",
+                        "icon_size": "small",
+                        "icon_width": 24,
+                        "icon_width_mobile": 24,
+                        "icon_color": "#ffa440",
+                        "icon_bg_color": "rgba(0,0,0,0)",
+                        "text": "Backed by <strong>45 independent studies on over 2,800 people</strong>",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_weight": "",
+                        "font_size": 17,
+                        "font_size_mobile": 15,
+                        "line_height": "normal",
+                        "text_color": "text",
+                        "text_color_gradient": ""
+                      },
+                      "blocks": {}
+                    },
+                    "list_item_Cj7kEV": {
+                      "type": "_list-item",
+                      "name": "t:names.list_item",
+                      "settings": {
+                        "icon": "check",
+                        "icon_size": "small",
+                        "icon_width": 24,
+                        "icon_width_mobile": 24,
+                        "icon_color": "#ffa440",
+                        "icon_bg_color": "rgba(0,0,0,0)",
+                        "text": "<strong>Glowy, hydrated skin: +17% moisture in 12 weeks, in a study on women3</strong>",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_weight": "",
+                        "font_size": 17,
+                        "font_size_mobile": 15,
+                        "line_height": "normal",
+                        "text_color": "text",
+                        "text_color_gradient": ""
+                      },
+                      "blocks": {}
+                    },
+                    "list_item_RyqtE4": {
+                      "type": "_list-item",
+                      "name": "t:names.list_item",
+                      "settings": {
+                        "icon": "check",
+                        "icon_size": "small",
+                        "icon_width": 24,
+                        "icon_width_mobile": 24,
+                        "icon_color": "#ffa440",
+                        "icon_bg_color": "rgba(0,0,0,0)",
+                        "text": "<strong>Smoother, firmer skin: -13.9% wrinkle volume in 16 weeks, same ingredient combination5</strong>",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_weight": "",
+                        "font_size": 17,
+                        "font_size_mobile": 15,
+                        "line_height": "normal",
+                        "text_color": "text",
+                        "text_color_gradient": ""
+                      },
+                      "blocks": {}
+                    },
+                    "list_item_gmFRCj": {
+                      "type": "_list-item",
+                      "name": "t:names.list_item",
+                      "settings": {
+                        "icon": "check",
+                        "icon_size": "small",
+                        "icon_width": 24,
+                        "icon_width_mobile": 24,
+                        "icon_color": "#ffa440",
+                        "icon_bg_color": "rgba(0,0,0,0)",
+                        "text": "Halal Certified · EU Made · Third Party Tested",
+                        "type_preset": "custom",
+                        "font": "var(--font-body--family)",
+                        "font_weight": "",
+                        "font_size": 17,
+                        "font_size_mobile": 15,
+                        "line_height": "normal",
+                        "text_color": "text",
+                        "text_color_gradient": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "list_item_eLDTPp",
+                    "list_item_jU7tr3",
+                    "list_item_LFCFXc",
+                    "list_item_Cj7kEV",
+                    "list_item_RyqtE4",
+                    "list_item_gmFRCj"
+                  ]
+                }
+              },
+              "block_order": [
+                "product_information_group_VXMCmd",
+                "product_description_DwV47J",
+                "text_N3JhYd",
+                "icon_list_7jAnnV"
+              ]
+            },
+            "variant_picker_NYNfW9": {
+              "type": "_variant-picker",
+              "name": "t:names.variant_picker",
+              "disabled": true,
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": true,
+                "show_variant_image": false,
+                "swatch_shape": "square",
+                "swatch_width": 52,
+                "swatch_height": 44,
+                "buttons_radius": 60,
+                "size_chart_title": "Size",
+                "size_chart_page": "product-size-chart",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_inventory_VDFAce": {
+              "type": "_product-inventory",
+              "name": "t:names.product_inventory",
+              "disabled": true,
+              "settings": {
+                "inventory_threshold": 10,
+                "show_inventory_quantity": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_rhMNwM": {
+              "type": "_buy-buttons",
+              "name": "t:names.buy_buttons",
+              "settings": {
+                "gift_card_form": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity-selector": {
+                  "type": "_quantity-selector",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "_add-to-card-button",
+                  "static": true,
+                  "settings": {
+                    "style": "secondary"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "_accelerated-checkout",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "payment_icons_pdp_xcwni8": {
+              "type": "payment-icons-pdp",
+              "name": "Lumeia Trust Stack",
+              "settings": {
+                "color_scheme": ""
+              },
+              "blocks": {}
+            },
+            "group_ngeVTK": {
+              "type": "group",
+              "name": "Policies",
+              "disabled": true,
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "center",
+                "vertical_alignment": "center",
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "column_gap": 40,
+                "row_gap": 12,
+                "enable_sticky_desktop": false,
+                "width": "fill",
+                "custom_width": 73,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "enable_swipe_on_mobile": false,
+                "swipe_custom_width_column": false,
+                "swipe_column_width": 76,
+                "columns_mobile": 2,
+                "column_gap_mobile": 24,
+                "row_gap_mobile": 12,
+                "device": "desktop",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "padding-block-start-mobile": 0,
+                "padding-block-end-mobile": 0,
+                "padding-inline-start-mobile": 0,
+                "padding-inline-end-mobile": 0
+              },
+              "blocks": {
+                "group_kmCAJc": {
+                  "type": "group",
+                  "name": "t:names.group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "horizontal_alignment_flex_direction_column": "center",
+                    "column_gap": 0,
+                    "row_gap": 8,
+                    "enable_sticky_desktop": false,
+                    "width": "fit-content",
+                    "custom_width": 20,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100,
+                    "inherit_color_scheme": true,
+                    "color_scheme": "",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "enable_swipe_on_mobile": false,
+                    "swipe_custom_width_column": false,
+                    "swipe_column_width": 76,
+                    "columns_mobile": 2,
+                    "column_gap_mobile": 0,
+                    "row_gap_mobile": 8,
+                    "device": "desktop",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "padding-block-start-mobile": 0,
+                    "padding-block-end-mobile": 0,
+                    "padding-inline-start-mobile": 0,
+                    "padding-inline-end-mobile": 0
+                  },
+                  "blocks": {
+                    "icon_8nYx8X": {
+                      "type": "icon",
+                      "name": "t:names.icon",
+                      "settings": {
+                        "icon": "package",
+                        "icon_size": "custom-size",
+                        "width": 32,
+                        "width_mobile": 32,
+                        "link": "",
+                        "round_shape": false
+                      },
+                      "blocks": {}
+                    },
+                    "text_3JgwqJ": {
+                      "type": "text",
+                      "name": "t:names.text",
+                      "settings": {
+                        "text": "<p>Free shipping</p>",
+                        "highlight_style": "none",
+                        "highlight_font_style": "italic",
+                        "highlight_shape_color": "",
+                        "highlight_text_color": "",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_weight": "",
+                        "font_size": 15,
+                        "font_size_mobile": 15,
+                        "line_height": "normal",
+                        "text_color": "text",
+                        "text_color_gradient": "",
+                        "disable_line_break_mobile": false,
+                        "width": "fit-content",
+                        "text_alignment": "left",
+                        "width_mobile": "fit-content",
+                        "text_alignment_mobile": "left",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0,
+                        "mobile-padding-scale": 80,
+                        "animation_type": "none",
+                        "animation_delay": 250
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "icon_8nYx8X",
+                    "text_3JgwqJ"
+                  ]
+                },
+                "group_tDdQwH": {
+                  "type": "group",
+                  "name": "t:names.group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "horizontal_alignment_flex_direction_column": "center",
+                    "column_gap": 0,
+                    "row_gap": 8,
+                    "enable_sticky_desktop": false,
+                    "width": "fit-content",
+                    "custom_width": 20,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100,
+                    "inherit_color_scheme": true,
+                    "color_scheme": "",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "enable_swipe_on_mobile": false,
+                    "swipe_custom_width_column": false,
+                    "swipe_column_width": 76,
+                    "columns_mobile": 2,
+                    "column_gap_mobile": 0,
+                    "row_gap_mobile": 8,
+                    "device": "desktop",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "padding-block-start-mobile": 0,
+                    "padding-block-end-mobile": 0,
+                    "padding-inline-start-mobile": 0,
+                    "padding-inline-end-mobile": 0
+                  },
+                  "blocks": {
+                    "icon_UwbpmT": {
+                      "type": "icon",
+                      "name": "t:names.icon",
+                      "settings": {
+                        "icon": "arrow-up-left-down",
+                        "icon_size": "custom-size",
+                        "width": 32,
+                        "width_mobile": 32,
+                        "link": "",
+                        "round_shape": false
+                      },
+                      "blocks": {}
+                    },
+                    "text_VrT8cz": {
+                      "type": "text",
+                      "name": "t:names.text",
+                      "settings": {
+                        "text": "<p>Easy return</p>",
+                        "highlight_style": "none",
+                        "highlight_font_style": "italic",
+                        "highlight_shape_color": "",
+                        "highlight_text_color": "",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_weight": "",
+                        "font_size": 15,
+                        "font_size_mobile": 15,
+                        "line_height": "normal",
+                        "text_color": "text",
+                        "text_color_gradient": "",
+                        "disable_line_break_mobile": false,
+                        "width": "fit-content",
+                        "text_alignment": "left",
+                        "width_mobile": "fit-content",
+                        "text_alignment_mobile": "left",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0,
+                        "mobile-padding-scale": 80,
+                        "animation_type": "none",
+                        "animation_delay": 250
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "icon_UwbpmT",
+                    "text_VrT8cz"
+                  ]
+                },
+                "group_wXJd6h": {
+                  "type": "group",
+                  "name": "t:names.group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "horizontal_alignment_flex_direction_column": "center",
+                    "column_gap": 0,
+                    "row_gap": 8,
+                    "enable_sticky_desktop": false,
+                    "width": "fit-content",
+                    "custom_width": 20,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100,
+                    "inherit_color_scheme": true,
+                    "color_scheme": "",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "enable_swipe_on_mobile": false,
+                    "swipe_custom_width_column": false,
+                    "swipe_column_width": 76,
+                    "columns_mobile": 2,
+                    "column_gap_mobile": 0,
+                    "row_gap_mobile": 8,
+                    "device": "desktop",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "padding-block-start-mobile": 0,
+                    "padding-block-end-mobile": 0,
+                    "padding-inline-start-mobile": 0,
+                    "padding-inline-end-mobile": 0
+                  },
+                  "blocks": {
+                    "icon_7CdXmV": {
+                      "type": "icon",
+                      "name": "t:names.icon",
+                      "settings": {
+                        "icon": "credit-card",
+                        "icon_size": "custom-size",
+                        "width": 32,
+                        "width_mobile": 32,
+                        "link": "",
+                        "round_shape": false
+                      },
+                      "blocks": {}
+                    },
+                    "text_YPaWtU": {
+                      "type": "text",
+                      "name": "t:names.text",
+                      "settings": {
+                        "text": "<p>Safe checkout</p>",
+                        "highlight_style": "none",
+                        "highlight_font_style": "italic",
+                        "highlight_shape_color": "",
+                        "highlight_text_color": "",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_weight": "",
+                        "font_size": 15,
+                        "font_size_mobile": 15,
+                        "line_height": "normal",
+                        "text_color": "text",
+                        "text_color_gradient": "",
+                        "disable_line_break_mobile": false,
+                        "width": "fit-content",
+                        "text_alignment": "left",
+                        "width_mobile": "fit-content",
+                        "text_alignment_mobile": "left",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0,
+                        "mobile-padding-scale": 80,
+                        "animation_type": "none",
+                        "animation_delay": 250
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "icon_7CdXmV",
+                    "text_YPaWtU"
+                  ]
+                }
+              },
+              "block_order": [
+                "group_kmCAJc",
+                "group_tDdQwH",
+                "group_wXJd6h"
+              ]
+            },
+            "pickup_availability_CgeNxU": {
+              "type": "_pickup-availability",
+              "name": "t:names.pickup_availability",
+              "disabled": true,
+              "settings": {
+                "border_radius": 10,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_video_testimonials_a37eGn": {
+              "type": "_product-video-testimonials",
+              "name": "t:names.video_testimonials",
+              "settings": {
+                "heading": "Video Feedbacks",
+                "heading_preset": "h4",
+                "video_ratio": "9/16",
+                "toggle_video_overlay": true,
+                "video_overlay_color": "#0000001a",
+                "video_border_radius": 20
+              },
+              "blocks": {}
+            },
+            "accordion_U9n4kg": {
+              "type": "accordion",
+              "name": "t:names.accordion",
+              "disabled": true,
+              "settings": {
+                "open_behavior": "single",
+                "type_preset": "h4",
+                "style": "standard",
+                "card_color_scheme": "",
+                "icon_arrow": "caret",
+                "icon_style": "default",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "accordion_row_XENRWn": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "text": "Product Details",
+                    "open_row_by_default": true,
+                    "icon": "none",
+                    "icon_size": "extra-large",
+                    "width": 24,
+                    "width_mobile": 24
+                  },
+                  "blocks": {
+                    "text_NhECK8": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Crafted with a clinically informed synbiotic blend, this formula supports the gut-skin connection to promote clearer, healthier-looking skin from within.</p><ul><li>24-capsule or 32-capsule supply</li><li>Advanced synbiotic + antioxidant complex</li><li>Supports gut balance and skin clarity</li><li>Designed for daily use</li><li>Non-GMO, gluten-free formula</li><li>No artificial colors or preservatives</li></ul>",
+                        "highlight_style": "none",
+                        "highlight_font_style": "italic",
+                        "highlight_shape_color": "",
+                        "highlight_text_color": "",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_weight": "",
+                        "font_size": 15,
+                        "font_size_mobile": 15,
+                        "line_height": "normal",
+                        "text_color": "subtext",
+                        "text_color_gradient": "",
+                        "disable_line_break_mobile": false,
+                        "width": "fit-content",
+                        "text_alignment": "left",
+                        "width_mobile": "fit-content",
+                        "text_alignment_mobile": "left",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0,
+                        "mobile-padding-scale": 80,
+                        "animation_type": "none",
+                        "animation_delay": 250
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_NhECK8"
+                  ]
+                },
+                "accordion_row_eMehRb": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "text": "Key ingredients",
+                    "open_row_by_default": false,
+                    "icon": "none",
+                    "icon_size": "extra-large",
+                    "width": 24,
+                    "width_mobile": 24
+                  },
+                  "blocks": {
+                    "text_JNT7ew": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>We offer free shipping on all orders over $100. Orders under $100 will be charged a flat rate of $10.</p>",
+                        "highlight_style": "none",
+                        "highlight_font_style": "italic",
+                        "highlight_shape_color": "",
+                        "highlight_text_color": "",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_weight": "",
+                        "font_size": 15,
+                        "font_size_mobile": 15,
+                        "line_height": "normal",
+                        "text_color": "subtext",
+                        "text_color_gradient": "",
+                        "disable_line_break_mobile": false,
+                        "width": "fit-content",
+                        "text_alignment": "left",
+                        "width_mobile": "fit-content",
+                        "text_alignment_mobile": "left",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0,
+                        "mobile-padding-scale": 80,
+                        "animation_type": "none",
+                        "animation_delay": 250
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_JNT7ew"
+                  ]
+                },
+                "accordion_row_iXty6f": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "text": "How to use",
+                    "open_row_by_default": false,
+                    "icon": "none",
+                    "icon_size": "extra-large",
+                    "width": 24,
+                    "width_mobile": 24
+                  },
+                  "blocks": {
+                    "text_gd3Lty": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Take 1 capsule daily with water, preferably with a meal.<br/>For best results, use consistently for at least 4–6 weeks to support visible skin improvements from within.</p>",
+                        "highlight_style": "none",
+                        "highlight_font_style": "italic",
+                        "highlight_shape_color": "",
+                        "highlight_text_color": "",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_weight": "",
+                        "font_size": 15,
+                        "font_size_mobile": 15,
+                        "line_height": "normal",
+                        "text_color": "subtext",
+                        "text_color_gradient": "",
+                        "disable_line_break_mobile": false,
+                        "width": "fit-content",
+                        "text_alignment": "left",
+                        "width_mobile": "fit-content",
+                        "text_alignment_mobile": "left",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0,
+                        "mobile-padding-scale": 80,
+                        "animation_type": "none",
+                        "animation_delay": 250
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_gd3Lty"
+                  ]
+                }
+              },
+              "block_order": [
+                "accordion_row_XENRWn",
+                "accordion_row_eMehRb",
+                "accordion_row_iXty6f"
+              ]
+            },
+            "product_share_9eDTGb": {
+              "type": "_product-share",
+              "name": "t:names.share",
+              "disabled": true,
+              "settings": {
+                "text": "Share:",
+                "show_help_desk": true,
+                "help_desk_label": "Need help ?",
+                "help_desk_link": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_recommendations_CQcChJ": {
+              "type": "_product-recommendations",
+              "name": "t:names.product_recommendations",
+              "disabled": true,
+              "settings": {
+                "recommendations_type": "related",
+                "heading": "Complete The Look",
+                "heading_preset": "h4",
+                "layout": "list",
+                "columns_xxl": 3,
+                "products_per_page": 2,
+                "product_count": 2,
+                "column_gap": 10,
+                "row_gap": 10,
+                "show_vendor": false,
+                "show_type": false,
+                "show_badges": false,
+                "show_swatches": false,
+                "show_quick_view": false,
+                "show_quick_add": true,
+                "pcard_image_ratio": "",
+                "enable_swipe_on_mobile": true,
+                "swipe_custom_width_column": false,
+                "swipe_column_width": 76,
+                "columns_mobile": "2",
+                "column_gap_mobile": 8,
+                "row_gap_mobile": 8,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 80
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "breadcrumbs_4zRHqF",
+            "product_information_group_zx4NRb",
+            "variant_picker_NYNfW9",
+            "product_inventory_VDFAce",
+            "buy_buttons_rhMNwM",
+            "payment_icons_pdp_xcwni8",
+            "group_ngeVTK",
+            "pickup_availability_CgeNxU",
+            "product_video_testimonials_a37eGn",
+            "accordion_U9n4kg",
+            "product_share_9eDTGb",
+            "product_recommendations_CQcChJ"
+          ]
+        }
+      },
+      "settings": {
+        "container": "page",
+        "media_position": "left",
+        "equal_columns": false,
+        "gap": 70,
+        "enable_sticky_add_to_cart": false,
+        "sticky_add_to_cart_inherit_color_scheme": true,
+        "sticky_add_to_cart_color_scheme": "",
+        "color_scheme": "scheme-08883d7b-0c93-4470-a1f4-f8c2b3b32b0c",
+        "device": "mobile",
+        "padding-block-start": 40,
+        "padding-block-end": 0,
+        "padding-block-start-mobile": 16,
+        "padding-block-end-mobile": 0
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

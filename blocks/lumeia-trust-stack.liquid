@@ -1,0 +1,183 @@
+{% comment %}
+  Lumeia Trust Stack (rebuilt) — payment logos + two trust lines.
+  Pebble-parity build: reuses the theme's own snippets and classes so the block
+  behaves like a native section, not a hand-rolled one.
+    - Payment logos are repeatable CHILD BLOCKS (_lumeia-payment-logo): add / remove / reorder
+      any number, each with its own image + Kuwait visibility, rendered via {% content_for 'blocks' %}.
+    - Padding: Devices (desktop/mobile) toggle -> 'spacing-style' snippet + .spacing-style class.
+    - Width: Fit/Fill (d/m) -> 'size-style' snippet + .size-style class.
+    - Typography per line: type preset + Custom (font/weight/size+mobile/line-height) + colour
+      (text/subtext/gradient), copied from text.liquid via 'typography-style' + native classes.
+    - Animation: theme animations + None + delay, via the native <motion-component> + data-motion.
+  Editable, translatable (text settings surface in Translate & Adapt), RTL-safe (logical properties), scoped CSS.
+  Kuwait geolocation kept: per-logo visibility (on each logo block) + a Kuwait secure-line override.
+{% endcomment %}
+
+{%- liquid
+  assign s = block.settings
+  assign cc = localization.country.iso_code
+
+  assign animation_type = s.animation_type | default: 'none'
+  assign root_element = 'div'
+  if animation_type != 'none' and settings.animations_enabled
+    assign root_element = 'motion-component'
+  endif
+-%}
+
+{%- capture root_style -%}
+--lt-logo-h: {{ s.logo_height }}px; --lt-logo-h-m: {{ s.logo_height_mobile }}px;
+--lt-logo-gap: {{ s.logo_gap }}px;
+--lt-g-icon: {{ s.guarantee_icon_size }}px; --lt-g-icon-m: {{ s.guarantee_icon_size_mobile }}px;
+--lt-s-icon: {{ s.secure_icon_size }}px; --lt-s-icon-m: {{ s.secure_icon_size_mobile }}px;
+{%- render 'spacing-style', settings: s -%}
+{%- render 'size-style', settings: s -%}
+{%- endcapture -%}
+
+<{{ root_element }}
+  class="lumeia-trust spacing-style size-style{% if s.color_scheme != blank %} color-{{ s.color_scheme }}{% endif %} lumeia-trust--{{ s.text_alignment }} lumeia-trust--m-{{ s.text_alignment_mobile }}"
+  style="{{ root_style | strip | strip_newlines }}"
+  {% if animation_type != 'none' %}data-motion="{{ animation_type }}" data-motion-delay="{{ s.animation_delay }}"{% endif %}
+  {{ block.shopify_attributes }}
+>
+
+  <div class="lumeia-trust__logos">{% content_for 'blocks' %}</div>
+
+  {%- if s.guarantee_text != blank -%}
+    {%- capture g_typo_class -%}{{ s.guarantee_type_preset }}{% if s.guarantee_type_preset == 'custom' %} custom-typography custom-font-size{% endif %}{%- endcapture -%}
+    <div class="lumeia-trust__line lumeia-trust__guarantee">
+      {%- if s.guarantee_icon != blank -%}<span class="lumeia-trust__icon lumeia-trust__icon--g">{{ s.guarantee_icon | image_url: width: 96 | image_tag: alt: '', loading: 'lazy' }}</span>{%- endif -%}
+      <span
+        class="lumeia-trust__text {{ g_typo_class }} color-{{ s.guarantee_text_color }}"
+        style="{% render 'typography-style', preset: s.guarantee_type_preset, font_family: s.guarantee_font, font_weight: s.guarantee_font_weight, font_size: s.guarantee_font_size, font_size_mobile: s.guarantee_font_size_mobile, line_height: s.guarantee_line_height %}{% if s.guarantee_text_color == 'gradient' %}--color-gradient: {{ s.guarantee_text_color_gradient | default: '#000000' }};{% endif %}"
+      >{{ s.guarantee_text }}</span>
+    </div>
+  {%- endif -%}
+
+  {%- assign secure = s.secure_text -%}
+  {%- if cc == 'KW' and s.secure_text_kuwait != blank -%}{%- assign secure = s.secure_text_kuwait -%}{%- endif -%}
+  {%- if secure != blank -%}
+    {%- capture sec_typo_class -%}{{ s.secure_type_preset }}{% if s.secure_type_preset == 'custom' %} custom-typography custom-font-size{% endif %}{%- endcapture -%}
+    <hr class="lumeia-trust__divider">
+    <div class="lumeia-trust__line lumeia-trust__secure">
+      {%- if s.secure_icon != blank -%}<span class="lumeia-trust__icon lumeia-trust__icon--s">{{ s.secure_icon | image_url: width: 96 | image_tag: alt: '', loading: 'lazy' }}</span>{%- endif -%}
+      <span
+        class="lumeia-trust__text {{ sec_typo_class }} color-{{ s.secure_text_color }}{% if s.secure_uppercase %} is-upper{% endif %}"
+        style="{% render 'typography-style', preset: s.secure_type_preset, font_family: s.secure_font, font_weight: s.secure_font_weight, font_size: s.secure_font_size, font_size_mobile: s.secure_font_size_mobile, line_height: s.secure_line_height %}{% if s.secure_text_color == 'gradient' %}--color-gradient: {{ s.secure_text_color_gradient | default: '#000000' }};{% endif %}"
+      >{{ secure }}</span>
+    </div>
+  {%- endif -%}
+
+</{{ root_element }}>
+
+{% stylesheet %}
+.lumeia-trust { display: flex; flex-direction: column; gap: 10px; font-family: var(--lumeia-font-body, inherit); }
+.lumeia-trust--left { align-items: flex-start; text-align: start; }
+.lumeia-trust--center { align-items: center; text-align: center; }
+.lumeia-trust--right { align-items: flex-end; text-align: end; }
+.lumeia-trust__logos { display: flex; flex-wrap: wrap; align-items: center; gap: var(--lt-logo-gap); }
+.lumeia-trust--center .lumeia-trust__logos { justify-content: center; }
+.lumeia-trust--right .lumeia-trust__logos { justify-content: flex-end; }
+.lumeia-trust__logo img { height: var(--lt-logo-h); width: auto; display: block; }
+.lumeia-trust__line { display: flex; align-items: center; gap: 8px; margin: 0; }
+.lumeia-trust--center .lumeia-trust__line { justify-content: center; }
+.lumeia-trust--right .lumeia-trust__line { justify-content: flex-end; }
+.lumeia-trust__text { margin: 0; }
+.lumeia-trust__text.is-upper { text-transform: uppercase; letter-spacing: .6px; }
+.lumeia-trust__icon--g img { height: var(--lt-g-icon); width: auto; display: block; }
+.lumeia-trust__icon--s img { height: var(--lt-s-icon); width: auto; display: block; }
+.lumeia-trust__divider { width: 80%; border: 0; border-top: 1px solid currentColor; opacity: .12; margin: 2px 0; }
+@media (max-width: 749px) {
+  .lumeia-trust--m-left { align-items: flex-start; text-align: start; }
+  .lumeia-trust--m-center { align-items: center; text-align: center; }
+  .lumeia-trust--m-right { align-items: flex-end; text-align: end; }
+  .lumeia-trust--m-center .lumeia-trust__logos { justify-content: center; }
+  .lumeia-trust--m-left .lumeia-trust__logos { justify-content: flex-start; }
+  .lumeia-trust--m-center .lumeia-trust__line { justify-content: center; }
+  .lumeia-trust--m-left .lumeia-trust__line { justify-content: flex-start; }
+  .lumeia-trust__logo img { height: var(--lt-logo-h-m); }
+  .lumeia-trust__icon--g img { height: var(--lt-g-icon-m); }
+  .lumeia-trust__icon--s img { height: var(--lt-s-icon-m); }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Payment & Trust (rebuilt)",
+  "tag": null,
+  "blocks": [ { "type": "_lumeia-payment-logo" } ],
+  "settings": [
+    { "type": "header", "content": "Appearance" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+
+    { "type": "header", "content": "Layout" },
+    { "type": "select", "id": "text_alignment", "label": "Alignment (desktop)", "default": "center", "options": [ {"value":"left","label":"Left"}, {"value":"center","label":"Center"}, {"value":"right","label":"Right"} ] },
+    { "type": "select", "id": "text_alignment_mobile", "label": "Alignment (mobile)", "default": "center", "options": [ {"value":"left","label":"Left"}, {"value":"center","label":"Center"}, {"value":"right","label":"Right"} ] },
+    { "type": "select", "id": "width", "label": "Width (desktop)", "default": "fill", "options": [ {"value":"fit-content","label":"Fit"}, {"value":"fill","label":"Fill"} ] },
+    { "type": "select", "id": "width_mobile", "label": "Width (mobile)", "default": "fill", "options": [ {"value":"fit-content","label":"Fit"}, {"value":"fill","label":"Fill"} ] },
+
+    { "type": "header", "content": "Payment logos" },
+    { "type": "paragraph", "content": "Add a 'Payment logo' block for each logo and upload its image. Each logo has a visibility setting (All countries / Kuwait only, e.g. KNET / Hide in Kuwait, e.g. AmEx) based on the visitor's storefront country. Drag to reorder. All logos show in the editor; the rule applies on the live store." },
+    { "type": "range", "id": "logo_height", "label": "Logo height (desktop)", "min": 10, "max": 40, "step": 1, "unit": "px", "default": 18 },
+    { "type": "range", "id": "logo_height_mobile", "label": "Logo height (mobile)", "min": 10, "max": 40, "step": 1, "unit": "px", "default": 16 },
+    { "type": "range", "id": "logo_gap", "label": "Gap between logos", "min": 2, "max": 32, "step": 1, "unit": "px", "default": 10 },
+
+    { "type": "header", "content": "Guarantee line" },
+    { "type": "image_picker", "id": "guarantee_icon", "label": "Icon" },
+    { "type": "range", "id": "guarantee_icon_size", "label": "Icon size (desktop)", "min": 10, "max": 48, "step": 1, "unit": "px", "default": 16 },
+    { "type": "range", "id": "guarantee_icon_size_mobile", "label": "Icon size (mobile)", "min": 10, "max": 48, "step": 1, "unit": "px", "default": 16 },
+    { "type": "text", "id": "guarantee_text", "label": "Text", "default": "No results in 60 days? Get your money back." },
+    { "type": "select", "id": "guarantee_type_preset", "label": "Text style", "default": "paragraph", "options": [ {"value":"rte","label":"Default"}, {"value":"paragraph","label":"Paragraph"}, {"value":"text-subheading","label":"Subheading"}, {"value":"h1","label":"H1"}, {"value":"h2","label":"H2"}, {"value":"h3","label":"H3"}, {"value":"h4","label":"H4"}, {"value":"h5","label":"H5"}, {"value":"h6","label":"H6"}, {"value":"custom","label":"Custom"} ] },
+    { "type": "select", "id": "guarantee_font", "label": "Font", "default": "var(--font-body--family)", "options": [ {"value":"var(--font-body--family)","label":"Body"}, {"value":"var(--font-heading--family)","label":"Heading"} ], "visible_if": "{{ block.settings.guarantee_type_preset == 'custom' }}" },
+    { "type": "select", "id": "guarantee_font_weight", "label": "Font weight", "default": "", "options": [ {"value":"","label":"Inherit"}, {"value":"300","label":"Light"}, {"value":"400","label":"Regular"}, {"value":"500","label":"Medium"}, {"value":"600","label":"Semi-bold"}, {"value":"700","label":"Bold"}, {"value":"800","label":"Extra bold"}, {"value":"900","label":"Black"} ], "visible_if": "{{ block.settings.guarantee_type_preset == 'custom' }}" },
+    { "type": "range", "id": "guarantee_font_size", "label": "Font size (desktop)", "min": 12, "max": 100, "step": 1, "unit": "px", "default": 14, "visible_if": "{{ block.settings.guarantee_type_preset == 'custom' }}" },
+    { "type": "range", "id": "guarantee_font_size_mobile", "label": "Font size (mobile)", "min": 12, "max": 60, "step": 1, "unit": "px", "default": 14, "visible_if": "{{ block.settings.guarantee_type_preset == 'custom' }}" },
+    { "type": "select", "id": "guarantee_line_height", "label": "Line height", "default": "normal", "options": [ {"value":"tight","label":"Tight"}, {"value":"normal","label":"Normal"}, {"value":"loose","label":"Loose"} ], "visible_if": "{{ block.settings.guarantee_type_preset == 'custom' }}" },
+    { "type": "select", "id": "guarantee_text_color", "label": "Text colour", "default": "text", "options": [ {"value":"text","label":"Text"}, {"value":"subtext","label":"Subtext"}, {"value":"gradient","label":"Gradient"} ] },
+    { "type": "color_background", "id": "guarantee_text_color_gradient", "label": "Gradient colour", "visible_if": "{{ block.settings.guarantee_text_color == 'gradient' }}" },
+
+    { "type": "header", "content": "Secure checkout line" },
+    { "type": "image_picker", "id": "secure_icon", "label": "Icon" },
+    { "type": "range", "id": "secure_icon_size", "label": "Icon size (desktop)", "min": 10, "max": 48, "step": 1, "unit": "px", "default": 14 },
+    { "type": "range", "id": "secure_icon_size_mobile", "label": "Icon size (mobile)", "min": 10, "max": 48, "step": 1, "unit": "px", "default": 14 },
+    { "type": "text", "id": "secure_text", "label": "Text", "default": "Secure Checkout" },
+    { "type": "text", "id": "secure_text_kuwait", "label": "Text (Kuwait visitors)", "info": "Shown instead of the above to Kuwait visitors. Leave blank to always use the text above.", "default": "Secure Checkout · KNET Supported" },
+    { "type": "checkbox", "id": "secure_uppercase", "label": "Uppercase", "default": true },
+    { "type": "select", "id": "secure_type_preset", "label": "Text style", "default": "text-subheading", "options": [ {"value":"rte","label":"Default"}, {"value":"paragraph","label":"Paragraph"}, {"value":"text-subheading","label":"Subheading"}, {"value":"h1","label":"H1"}, {"value":"h2","label":"H2"}, {"value":"h3","label":"H3"}, {"value":"h4","label":"H4"}, {"value":"h5","label":"H5"}, {"value":"h6","label":"H6"}, {"value":"custom","label":"Custom"} ] },
+    { "type": "select", "id": "secure_font", "label": "Font", "default": "var(--font-body--family)", "options": [ {"value":"var(--font-body--family)","label":"Body"}, {"value":"var(--font-heading--family)","label":"Heading"} ], "visible_if": "{{ block.settings.secure_type_preset == 'custom' }}" },
+    { "type": "select", "id": "secure_font_weight", "label": "Font weight", "default": "", "options": [ {"value":"","label":"Inherit"}, {"value":"300","label":"Light"}, {"value":"400","label":"Regular"}, {"value":"500","label":"Medium"}, {"value":"600","label":"Semi-bold"}, {"value":"700","label":"Bold"}, {"value":"800","label":"Extra bold"}, {"value":"900","label":"Black"} ], "visible_if": "{{ block.settings.secure_type_preset == 'custom' }}" },
+    { "type": "range", "id": "secure_font_size", "label": "Font size (desktop)", "min": 12, "max": 100, "step": 1, "unit": "px", "default": 12, "visible_if": "{{ block.settings.secure_type_preset == 'custom' }}" },
+    { "type": "range", "id": "secure_font_size_mobile", "label": "Font size (mobile)", "min": 12, "max": 60, "step": 1, "unit": "px", "default": 12, "visible_if": "{{ block.settings.secure_type_preset == 'custom' }}" },
+    { "type": "select", "id": "secure_line_height", "label": "Line height", "default": "normal", "options": [ {"value":"tight","label":"Tight"}, {"value":"normal","label":"Normal"}, {"value":"loose","label":"Loose"} ], "visible_if": "{{ block.settings.secure_type_preset == 'custom' }}" },
+    { "type": "select", "id": "secure_text_color", "label": "Text colour", "default": "subtext", "options": [ {"value":"text","label":"Text"}, {"value":"subtext","label":"Subtext"}, {"value":"gradient","label":"Gradient"} ] },
+    { "type": "color_background", "id": "secure_text_color_gradient", "label": "Gradient colour", "visible_if": "{{ block.settings.secure_text_color == 'gradient' }}" },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "select", "id": "device", "label": "Device", "default": "desktop", "options": [ {"value":"desktop","label":"Desktop"}, {"value":"mobile","label":"Mobile"} ] },
+    { "type": "range", "id": "padding-block-start", "label": "Top", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 8, "visible_if": "{{ block.settings.device == 'desktop' }}" },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 8, "visible_if": "{{ block.settings.device == 'desktop' }}" },
+    { "type": "range", "id": "padding-inline-start", "label": "Left", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'desktop' }}" },
+    { "type": "range", "id": "padding-inline-end", "label": "Right", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'desktop' }}" },
+    { "type": "range", "id": "padding-block-start-mobile", "label": "Top", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 8, "visible_if": "{{ block.settings.device == 'mobile' }}" },
+    { "type": "range", "id": "padding-block-end-mobile", "label": "Bottom", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 8, "visible_if": "{{ block.settings.device == 'mobile' }}" },
+    { "type": "range", "id": "padding-inline-start-mobile", "label": "Left", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'mobile' }}" },
+    { "type": "range", "id": "padding-inline-end-mobile", "label": "Right", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'mobile' }}" },
+
+    { "type": "header", "content": "Animation", "visible_if": "{{ settings.animations_enabled == true }}" },
+    { "type": "select", "id": "animation_type", "label": "Type", "default": "none", "options": [ {"value":"none","label":"None"}, {"value":"fade-in","label":"Fade in"}, {"value":"fade-up","label":"Fade up"}, {"value":"slide-in-left","label":"Slide in left"}, {"value":"slide-in-right","label":"Slide in right"} ], "visible_if": "{{ settings.animations_enabled == true }}" },
+    { "type": "range", "id": "animation_delay", "label": "Delay", "min": 0, "max": 2000, "step": 50, "unit": "ms", "default": 250, "visible_if": "{{ block.settings.animation_type != 'none' and settings.animations_enabled == true }}" }
+  ],
+  "presets": [
+    {
+      "name": "Payment & Trust (rebuilt)",
+      "blocks": [
+        { "type": "_lumeia-payment-logo", "settings": { "visibility": "kw_only" } },
+        { "type": "_lumeia-payment-logo", "settings": { "visibility": "all" } },
+        { "type": "_lumeia-payment-logo", "settings": { "visibility": "all" } },
+        { "type": "_lumeia-payment-logo", "settings": { "visibility": "all" } },
+        { "type": "_lumeia-payment-logo", "settings": { "visibility": "all" } },
+        { "type": "_lumeia-payment-logo", "settings": { "visibility": "hide_kw" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

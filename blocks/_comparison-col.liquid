@@ -1,0 +1,189 @@
+<!-- @title -->
+<td class="h6">{{ block.settings.title }}</td>
+
+{%- for i in (1..10) -%}
+  {%- liquid
+    assign checkbox_key = 'checkbox-' | append: i
+    assign text_key = 'checkbox_text_' | append: i
+
+    assign checkbox = block.settings[checkbox_key]
+    assign checkbox_text = block.settings[text_key]
+
+    if checkbox
+      assign icon_name = 'check-circle'
+    else
+      assign icon_name = 'circle'
+    endif
+  -%}
+
+  <!-- @row:{{ i }} -->
+  <td class="td-checkbox">
+    <div class="comparison-item">
+      {% render 'icon',
+        icon: icon_name,
+        size: 'extra-extra-large',
+        class: 'shrink-0'
+      %}
+
+      {% if checkbox_text != blank %}
+        <span class="comparison-item__text">
+          {{ checkbox_text }}
+        </span>
+      {% endif %}
+    </div>
+  </td>
+  <!-- @row:end -->
+
+{%- endfor -%}
+
+<style>
+  .comparison-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .comparison-item__text {
+    line-height: 1.4;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "t:names.comparison_column",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Column Title",
+      "default": "Title"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "checkbox-1",
+      "label": "Row 1 Checked",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "checkbox_text_1",
+      "label": "Row 1 Text"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "checkbox-2",
+      "label": "Row 2 Checked",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "checkbox_text_2",
+      "label": "Row 2 Text"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "checkbox-3",
+      "label": "Row 3 Checked",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "checkbox_text_3",
+      "label": "Row 3 Text"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "checkbox-4",
+      "label": "Row 4 Checked",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "checkbox_text_4",
+      "label": "Row 4 Text"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "checkbox-5",
+      "label": "Row 5 Checked",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "checkbox_text_5",
+      "label": "Row 5 Text"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "checkbox-6",
+      "label": "Row 6 Checked",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "checkbox_text_6",
+      "label": "Row 6 Text"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "checkbox-7",
+      "label": "Row 7 Checked",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "checkbox_text_7",
+      "label": "Row 7 Text"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "checkbox-8",
+      "label": "Row 8 Checked",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "checkbox_text_8",
+      "label": "Row 8 Text"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "checkbox-9",
+      "label": "Row 9 Checked",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "checkbox_text_9",
+      "label": "Row 9 Text"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "checkbox-10",
+      "label": "Row 10 Checked",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "checkbox_text_10",
+      "label": "Row 10 Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.comparison_column"
+    }
+  ]
+}
+{% endschema %}

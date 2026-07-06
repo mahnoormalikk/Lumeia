@@ -1,0 +1,484 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-collection-banner": {
+      "type": "main-collection-banner",
+      "blocks": {
+        "collection-banner-content": {
+          "type": "_collection-banner-content",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "position": "bottom-left",
+            "width": "fit-content",
+            "custom_width": 100,
+            "show_content_below_mobile": false,
+            "h_alignment_mobile": "flex-start",
+            "position_mobile": "bottom",
+            "device": "desktop",
+            "padding-block-start": 48,
+            "padding-block-end": 48,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "padding-block-start-mobile": 32,
+            "padding-block-end-mobile": 32,
+            "padding-inline-start-mobile": 0,
+            "padding-inline-end-mobile": 0
+          },
+          "blocks": {
+            "breadcrumbs_PeHzGk": {
+              "type": "_breadcrumbs",
+              "name": "t:names.breadcrumbs",
+              "settings": {
+                "padding-block-start": 0,
+                "padding-block-end": 24,
+                "mobile-padding-scale": 50
+              },
+              "blocks": {}
+            },
+            "collection_title_UyCfUi": {
+              "type": "_collection-title",
+              "name": "t:names.collection_title",
+              "settings": {
+                "type_preset": "h1",
+                "font": "var(--font-body--family)",
+                "font_weight": "",
+                "font_size": 15,
+                "font_size_mobile": 15,
+                "line_height": "normal",
+                "text_color": "text",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "mobile-padding-scale": 80,
+                "animation_type": "fade-up",
+                "animation_delay": 50
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "breadcrumbs_PeHzGk",
+            "collection_title_UyCfUi"
+          ]
+        }
+      },
+      "name": "t:names.collection_banner",
+      "settings": {
+        "container": "full",
+        "enable_header_overlay": true,
+        "show_image": true,
+        "toggle_overlay": true,
+        "overlay_color": "#00000033",
+        "height": "adapt",
+        "height_mobile": "auto",
+        "color_scheme": "scheme-inverse",
+        "border_radius": 20,
+        "device": "desktop",
+        "padding-block-start": 0,
+        "padding-block-end": 0,
+        "padding-block-start-mobile": 0,
+        "padding-block-end-mobile": 0
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "blocks": {
+        "product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "settings": {
+        "container": "fixed",
+        "products_per_page": 12,
+        "pagination": "number",
+        "column_gap": 10,
+        "row_gap": 10,
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "enable_grid_density": true,
+        "expand_filter_groups": "Availability, Price, Size, Brand",
+        "column_gap_mobile": 8,
+        "row_gap_mobile": 8,
+        "color_scheme": "scheme-7",
+        "device": "desktop",
+        "padding-block-start": 40,
+        "padding-block-end": 100,
+        "padding-block-start-mobile": 24,
+        "padding-block-end-mobile": 48
+      }
+    },
+    "custom_section_33QPYa": {
+      "type": "custom-section",
+      "blocks": {
+        "text_4yxRFz": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>About Pebble</p>",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_shape_color": "",
+            "highlight_text_color": "",
+            "type_preset": "h3",
+            "font": "var(--font-body--family)",
+            "font_weight": "",
+            "font_size": 15,
+            "font_size_mobile": 15,
+            "line_height": "normal",
+            "text_color": "text",
+            "text_color_gradient": "",
+            "disable_line_break_mobile": false,
+            "width": "fit-content",
+            "text_alignment": "left",
+            "width_mobile": "fit-content",
+            "text_alignment_mobile": "left",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "mobile-padding-scale": 80,
+            "animation_type": "fade-up",
+            "animation_delay": 50
+          },
+          "blocks": {}
+        },
+        "collapsible_text_kENe3Q": {
+          "type": "collapsible-text",
+          "name": "t:names.collapsible_text",
+          "settings": {
+            "text": "<p>From classic wood and metal to contemporary acrylic and glass, each material offers distinct advantages, from strength and resilience to modern versatility.<br/><br/>Choosing furniture involves more than aesthetics; it’s about setting a cohesive atmosphere that balances beauty, practicality, and durability. While many favor minimalist designs for their clean lines, there's always appeal in the rich detail of traditional pieces like Victorian or Art Deco. This overview provides insights into different styles and materials, helping you find the furniture that harmonizes with both your functional needs and personal style.</p>",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_weight": "",
+            "font_size": 15,
+            "font_size_mobile": 15,
+            "line_height": "normal",
+            "text_color": "subtext",
+            "line_limit": "4-lines",
+            "button_style": "white",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "mobile-padding-scale": 80
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_4yxRFz",
+        "collapsible_text_kENe3Q"
+      ],
+      "name": "t:names.rich_text",
+      "settings": {
+        "container": "page-width",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "column_gap": 30,
+        "row_gap": 24,
+        "column_gap_mobile": 12,
+        "row_gap_mobile": 12,
+        "use_color_scheme_in_container": true,
+        "color_scheme": "scheme-11",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 20,
+        "device": "desktop",
+        "padding-block-start": 40,
+        "padding-block-end": 40,
+        "padding-inline-start": 50,
+        "padding-inline-end": 50,
+        "padding-block-start-mobile": 32,
+        "padding-block-end-mobile": 32,
+        "padding-inline-start-mobile": 20,
+        "padding-inline-end-mobile": 20
+      }
+    },
+    "custom_section_VKzPJh": {
+      "type": "custom-section",
+      "blocks": {
+        "group_L87et3": {
+          "type": "group",
+          "name": "t:names.section_header_vertical",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "horizontal_alignment_flex_direction_column": "center",
+            "column_gap": 0,
+            "row_gap": 0,
+            "enable_sticky_desktop": false,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "column_gap_mobile": 0,
+            "row_gap_mobile": 0,
+            "device": "mobile",
+            "padding-block-start": 0,
+            "padding-block-end": 60,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "padding-block-start-mobile": 0,
+            "padding-block-end-mobile": 32,
+            "padding-inline-start-mobile": 0,
+            "padding-inline-end-mobile": 0
+          },
+          "blocks": {
+            "text_LA9imh": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<p>The future of gut health</p>",
+                "highlight_style": "none",
+                "highlight_font_style": "italic",
+                "highlight_shape_color": "",
+                "highlight_text_color": "",
+                "type_preset": "h1",
+                "font": "var(--font-body--family)",
+                "font_weight": "",
+                "font_size": 15,
+                "font_size_mobile": 15,
+                "line_height": "normal",
+                "text_color": "text",
+                "text_color_gradient": "",
+                "disable_line_break_mobile": false,
+                "width": "fit-content",
+                "text_alignment": "left",
+                "width_mobile": "fit-content",
+                "text_alignment_mobile": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "mobile-padding-scale": 80,
+                "animation_type": "fade-up",
+                "animation_delay": 50
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_LA9imh"
+          ]
+        },
+        "grid_V7AJqD": {
+          "type": "grid",
+          "name": "t:names.grid",
+          "settings": {
+            "vertical_alignment": "start",
+            "columns_xxl": 4,
+            "column_gap": 50,
+            "row_gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "enable_swipe_on_mobile": true,
+            "swipe_custom_width_column": true,
+            "swipe_column_width": 63,
+            "columns_mobile": 1,
+            "column_gap_mobile": 12,
+            "row_gap_mobile": 12,
+            "device": "desktop",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "padding-block-start-mobile": 0,
+            "padding-block-end-mobile": 0,
+            "padding-inline-start-mobile": 0,
+            "padding-inline-end-mobile": 0,
+            "custom_columns": ""
+          },
+          "blocks": {
+            "icon_box_U4WEDW": {
+              "type": "icon-box",
+              "name": "t:names.icon_box_standard",
+              "settings": {
+                "direction": "vertical",
+                "text_align": "center",
+                "icon": "magic-wand",
+                "icon_spacing": 16,
+                "icon_size": "custom-size",
+                "icon_width": 90,
+                "icon_width_mobile": 90,
+                "heading": "Gut Health",
+                "heading_preset": "h5",
+                "text": "<p>Prebiotics feed good bacteria to boost nutrient absorption</p>",
+                "text_color": "subtext",
+                "link": "",
+                "show_link_icon": true,
+                "content_row_gap": 8,
+                "style": "standard",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "solid",
+                "border_width": 1,
+                "border_opacity": 10,
+                "border_radius": 10
+              },
+              "blocks": {}
+            },
+            "icon_box_mCDPww": {
+              "type": "icon-box",
+              "name": "t:names.icon_box_standard",
+              "settings": {
+                "direction": "vertical",
+                "text_align": "center",
+                "icon": "magic-wand",
+                "icon_spacing": 16,
+                "icon_size": "custom-size",
+                "icon_width": 90,
+                "icon_width_mobile": 90,
+                "heading": "Brain Health",
+                "heading_preset": "h5",
+                "text": "<p>Thiamin, folate, and mushrooms support clarity and brain health</p>",
+                "text_color": "subtext",
+                "link": "",
+                "show_link_icon": true,
+                "content_row_gap": 8,
+                "style": "standard",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "solid",
+                "border_width": 1,
+                "border_opacity": 10,
+                "border_radius": 10
+              },
+              "blocks": {}
+            },
+            "icon_box_R7F88e": {
+              "type": "icon-box",
+              "name": "t:names.icon_box_standard",
+              "settings": {
+                "direction": "vertical",
+                "text_align": "center",
+                "icon": "magic-wand",
+                "icon_spacing": 16,
+                "icon_size": "custom-size",
+                "icon_width": 90,
+                "icon_width_mobile": 90,
+                "heading": "Energy & Body",
+                "heading_preset": "h5",
+                "text": "<p>Thiamin, folate, and mushrooms support clarity and brain health</p>",
+                "text_color": "subtext",
+                "link": "",
+                "show_link_icon": true,
+                "content_row_gap": 8,
+                "style": "standard",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "solid",
+                "border_width": 1,
+                "border_opacity": 10,
+                "border_radius": 10
+              },
+              "blocks": {}
+            },
+            "icon_box_zhqRzz": {
+              "type": "icon-box",
+              "name": "t:names.icon_box_standard",
+              "settings": {
+                "direction": "vertical",
+                "text_align": "center",
+                "icon": "magic-wand",
+                "icon_spacing": 16,
+                "icon_size": "custom-size",
+                "icon_width": 90,
+                "icon_width_mobile": 90,
+                "heading": "Immunity",
+                "heading_preset": "h5",
+                "text": "<p>Immunity and stress relief from<br/>Vitamin C and D, Zinc</p>",
+                "text_color": "subtext",
+                "link": "",
+                "show_link_icon": true,
+                "content_row_gap": 8,
+                "style": "standard",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "solid",
+                "border_width": 1,
+                "border_opacity": 10,
+                "border_radius": 10
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "icon_box_U4WEDW",
+            "icon_box_mCDPww",
+            "icon_box_R7F88e",
+            "icon_box_zhqRzz"
+          ]
+        }
+      },
+      "block_order": [
+        "group_L87et3",
+        "grid_V7AJqD"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "container": "page-width",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "column_gap": 12,
+        "row_gap": 0,
+        "column_gap_mobile": 12,
+        "row_gap_mobile": 0,
+        "use_color_scheme_in_container": false,
+        "color_scheme": "",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "device": "desktop",
+        "padding-block-start": 100,
+        "padding-block-end": 100,
+        "padding-inline-start": 15,
+        "padding-inline-end": 15,
+        "padding-block-start-mobile": 48,
+        "padding-block-end-mobile": 48,
+        "padding-inline-start-mobile": 16,
+        "padding-inline-end-mobile": 16
+      }
+    }
+  },
+  "order": [
+    "main-collection-banner",
+    "main",
+    "custom_section_33QPYa",
+    "custom_section_VKzPJh"
+  ]
+}

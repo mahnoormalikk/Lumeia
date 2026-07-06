@@ -1,0 +1,298 @@
+{%- liquid
+  assign b = block.settings
+  assign did = 'lumeia-flavour-' | append: block.id
+  assign popup_scheme = b.popup_color_scheme
+  case b.button_size_mobile
+    when 'small'
+      assign btn_h_m = '3.4rem'
+      assign btn_pi_m = '1.4rem'
+      assign btn_fs_m = '1.25rem'
+    when 'large'
+      assign btn_h_m = '5rem'
+      assign btn_pi_m = '2.8rem'
+      assign btn_fs_m = '1.55rem'
+    else
+      assign btn_h_m = '4.2rem'
+      assign btn_pi_m = '2rem'
+      assign btn_fs_m = '1.4rem'
+  endcase
+-%}
+{%- style -%}
+  .lumeia-flavour-card--{{ block.id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.85rem;
+    margin-inline: auto;
+  }
+  .lumeia-flavour-card--{{ block.id }} .lumeia-flavour-card__media { width: 100%; overflow: hidden; }
+  .lumeia-flavour-card--{{ block.id }} .lumeia-flavour-card__name { margin: 0; }
+  .lumeia-flavour-card--{{ block.id }} .lumeia-flavour-card__btn { cursor: pointer; }
+  .lumeia-flavour-card--{{ block.id }} .lumeia-flavour-card__name,
+  #{{ did }} .lumeia-flavour-dialog__title,
+  #{{ did }} .lumeia-flavour-dialog__ingredients,
+  #{{ did }} .lumeia-flavour-dialog__allergen { text-align: var(--ta); }
+
+  #{{ did }} {
+    border: none;
+    padding: 0;
+    inline-size: min(92vw, {{ b.dialog_max_width }}px);
+    max-block-size: 88vh;
+    border-radius: {{ b.dialog_radius }}px;
+    overflow: auto;
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    opacity: 0;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+  #{{ did }}[data-anim="fade-scale"] { transform: scale(0.96); }
+  #{{ did }}[data-anim="slide-up"] { transform: translateY(18px); }
+  #{{ did }}.is-open { opacity: 1; transform: none; }
+  #{{ did }}[data-anim="none"] { transition: none; }
+  #{{ did }}::backdrop { background: rgba(0,0,0,0.55); opacity: 0; transition: opacity 0.22s ease; }
+  #{{ did }}.is-open::backdrop { opacity: 1; }
+  #{{ did }} .lumeia-flavour-dialog__inner { padding: clamp(1.25rem, 4vw, 2.25rem); }
+  #{{ did }} .lumeia-flavour-dialog__title { margin: 0 0 1rem; }
+  #{{ did }} .lumeia-flavour-dialog__media { width: {{ b.label_image_width }}%; margin: 0 auto 1.25rem; border-radius: {{ b.label_image_radius }}px; overflow: hidden; }
+  #{{ did }} .lumeia-flavour-dialog__allergen { margin-block-start: 1rem; }
+  #{{ did }} .lumeia-flavour-dialog__close {
+    position: absolute;
+    inset-block-start: 1rem;
+    inset-inline-end: 1rem;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.07);
+    color: inherit;
+    font-size: 1.9rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+  }
+  @media (max-width: 749px) {
+    .lumeia-flavour-card--{{ block.id }} .lumeia-flavour-card__name,
+    #{{ did }} .lumeia-flavour-dialog__title,
+    #{{ did }} .lumeia-flavour-dialog__ingredients,
+    #{{ did }} .lumeia-flavour-dialog__allergen { text-align: var(--ta-m); }
+    #{{ did }} .lumeia-flavour-dialog__media { width: {{ b.label_image_width_mobile }}%; }
+    .lumeia-flavour-card--{{ block.id }} .lumeia-flavour-card__btn {
+      --button-height: {{ btn_h_m }};
+      --button-padding-inline: {{ btn_pi_m }};
+      font-size: {{ btn_fs_m }};
+    }
+  }
+{%- endstyle -%}
+
+<div
+  class="lumeia-flavour-card lumeia-flavour-card--{{ block.id }} size-style spacing-style{% if b.color_scheme != blank %} color-{{ b.color_scheme }}{% endif %}"
+  style="{% render 'size-style', settings: b %}{% render 'spacing-style', settings: b %}"
+  {{ block.shopify_attributes }}
+>
+  {%- if b.card_image != blank -%}
+    <div
+      class="lumeia-flavour-card__media border-style"
+      style="{% render 'border-style', border: b.border, border_width: b.border_width, border_opacity: b.border_opacity, border_radius: b.corner_radius %}"
+    >
+      {% render 'responsive-image',
+        mode: 'js',
+        image: b.card_image,
+        image_mobile: b.card_image_mobile,
+        image_ratio: b.image_ratio,
+        image_ratio_mobile: b.image_ratio_mobile,
+        default_alt: b.name,
+        use_zoom: false,
+        loading: 'eager'
+      %}
+      {%- if b.media_overlay -%}{% render 'overlay', overlay_color: b.overlay_color %}{%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <span
+    class="lumeia-flavour-card__name {{ b.name_type_preset }}{% if b.name_type_preset == 'custom' %} custom-typography custom-font-size{% endif %} color-{{ b.name_text_color }}"
+    style="{% render 'typography-style', preset: b.name_type_preset, font_family: b.name_font, font_weight: b.name_font_weight, font_size: b.name_font_size, font_size_mobile: b.name_font_size_mobile, line_height: b.name_line_height %}{% if b.name_text_color == 'gradient' %}--color-gradient: {{ b.name_text_color_gradient | default: '#000000' }};{% endif %}--ta: {{ b.name_text_alignment }};--ta-m: {{ b.name_text_alignment_mobile }};"
+  >{{ b.name }}</span>
+
+  <button
+    type="button"
+    class="lumeia-flavour-card__btn btn btn--medium btn--{{ b.button_style }}"
+    data-flavour-open="{{ block.id }}"
+  >{{ b.button_label }}</button>
+
+    <dialog
+      id="{{ did }}"
+      class="lumeia-flavour-dialog{% if popup_scheme != blank %} color-{{ popup_scheme }}{% endif %}"
+      data-anim="{{ b.popup_animation }}"
+      aria-labelledby="{{ did }}-title"
+    >
+      <button type="button" class="lumeia-flavour-dialog__close" data-flavour-close aria-label="{{ 'accessibility.close_dialog' | t }}">&times;</button>
+      <div class="lumeia-flavour-dialog__inner">
+        <h3
+          id="{{ did }}-title"
+          class="lumeia-flavour-dialog__title {{ b.title_type_preset }}{% if b.title_type_preset == 'custom' %} custom-typography custom-font-size{% endif %} color-{{ b.title_text_color }}"
+          style="{% render 'typography-style', preset: b.title_type_preset, font_family: b.title_font, font_weight: b.title_font_weight, font_size: b.title_font_size, font_size_mobile: b.title_font_size_mobile, line_height: b.title_line_height %}{% if b.title_text_color == 'gradient' %}--color-gradient: {{ b.title_text_color_gradient | default: '#000000' }};{% endif %}--ta: {{ b.title_text_alignment }};--ta-m: {{ b.title_text_alignment_mobile }};"
+        >{{ b.name }}</h3>
+        {%- if b.label_image != blank -%}
+          <div class="lumeia-flavour-dialog__media">
+            {% render 'responsive-image',
+              mode: 'js',
+              image: b.label_image,
+              image_ratio: b.label_image_ratio,
+              image_ratio_mobile: b.label_image_ratio_mobile,
+              default_alt: b.name
+            %}
+          </div>
+        {%- endif -%}
+        {%- if b.ingredients != blank -%}
+          <div
+            class="lumeia-flavour-dialog__ingredients {{ b.ing_type_preset }}{% if b.ing_type_preset == 'custom' %} custom-typography custom-font-size{% endif %} color-{{ b.ing_text_color }}"
+            style="{% render 'typography-style', preset: b.ing_type_preset, font_family: b.ing_font, font_weight: b.ing_font_weight, font_size: b.ing_font_size, font_size_mobile: b.ing_font_size_mobile, line_height: b.ing_line_height %}{% if b.ing_text_color == 'gradient' %}--color-gradient: {{ b.ing_text_color_gradient | default: '#000000' }};{% endif %}--ta: {{ b.ing_text_alignment }};--ta-m: {{ b.ing_text_alignment_mobile }};"
+          >{{ b.ingredients }}</div>
+        {%- endif -%}
+        {%- if b.allergen != blank -%}
+          <div
+            class="lumeia-flavour-dialog__allergen {{ b.alg_type_preset }}{% if b.alg_type_preset == 'custom' %} custom-typography custom-font-size{% endif %} color-{{ b.alg_text_color }}"
+            style="{% render 'typography-style', preset: b.alg_type_preset, font_family: b.alg_font, font_weight: b.alg_font_weight, font_size: b.alg_font_size, font_size_mobile: b.alg_font_size_mobile, line_height: b.alg_line_height %}{% if b.alg_text_color == 'gradient' %}--color-gradient: {{ b.alg_text_color_gradient | default: '#000000' }};{% endif %}--ta: {{ b.alg_text_alignment }};--ta-m: {{ b.alg_text_alignment_mobile }};"
+          >{{ b.allergen }}</div>
+        {%- endif -%}
+      </div>
+    </dialog>
+</div>
+
+<script>
+  (function () {
+    var btn = document.querySelector('[data-flavour-open="{{ block.id }}"]');
+    var d = document.getElementById('{{ did }}');
+    if (!btn || !d) return;
+    function open() {
+      var y = window.scrollY;
+      d.showModal();
+      window.scrollTo(0, y);
+      requestAnimationFrame(function () { d.classList.add('is-open'); });
+    }
+    function close() {
+      d.classList.remove('is-open');
+      var t;
+      var done = function () { d.removeEventListener('transitionend', done); clearTimeout(t); if (d.open) d.close(); };
+      d.addEventListener('transitionend', done);
+      t = setTimeout(done, 320);
+    }
+    btn.addEventListener('click', open);
+    d.querySelectorAll('[data-flavour-close]').forEach(function (c) { c.addEventListener('click', close); });
+    d.addEventListener('click', function (e) { if (e.target === d) close(); });
+    d.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Flavour card",
+  "tag": null,
+  "settings": [
+    { "type": "header", "content": "Image" },
+    { "type": "image_picker", "id": "card_image", "label": "Card image (fruit)" },
+    { "type": "image_picker", "id": "card_image_mobile", "label": "Card image (mobile, optional)" },
+    { "type": "select", "id": "image_ratio", "label": "Aspect ratio", "default": "adapt", "options": [ {"value":"adapt","label":"Auto"},{"value":"1/1","label":"Square (1/1)"},{"value":"4/5","label":"Portrait (4/5)"},{"value":"3/4","label":"Portrait (3/4)"},{"value":"16/9","label":"Landscape (16/9)"},{"value":"4/3","label":"Landscape (4/3)"},{"value":"21/9","label":"Landscape (21/9)"} ] },
+    { "type": "select", "id": "image_ratio_mobile", "label": "Aspect ratio (mobile)", "default": "adapt", "options": [ {"value":"adapt","label":"Auto"},{"value":"1/1","label":"Square (1/1)"},{"value":"4/5","label":"Portrait (4/5)"},{"value":"3/4","label":"Portrait (3/4)"},{"value":"16/9","label":"Landscape (16/9)"},{"value":"4/3","label":"Landscape (4/3)"},{"value":"21/9","label":"Landscape (21/9)"} ] },
+    { "type": "checkbox", "id": "media_overlay", "label": "Media overlay", "default": false },
+    { "type": "color", "id": "overlay_color", "label": "Overlay colour", "alpha": true, "default": "#00000026", "visible_if": "{{ block.settings.media_overlay }}" },
+
+    { "type": "header", "content": "Card style" },
+    { "type": "range", "id": "corner_radius", "label": "Corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 16 },
+    { "type": "select", "id": "border", "label": "Border", "default": "none", "options": [ { "value": "none", "label": "None" }, { "value": "solid", "label": "Solid" } ] },
+    { "type": "range", "id": "border_width", "label": "Border width", "min": 0, "max": 10, "step": 1, "unit": "px", "default": 1, "visible_if": "{{ block.settings.border == 'solid' }}" },
+    { "type": "range", "id": "border_opacity", "label": "Border opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100, "visible_if": "{{ block.settings.border == 'solid' }}" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" },
+    { "type": "select", "id": "width", "label": "Width", "default": "fill", "options": [ { "value": "fit-content", "label": "Fit" }, { "value": "fill", "label": "Fill" }, { "value": "custom", "label": "Custom" } ] },
+    { "type": "range", "id": "custom_width", "label": "Custom width", "min": 10, "max": 100, "step": 5, "unit": "%", "default": 100, "visible_if": "{{ block.settings.width == 'custom' }}" },
+    { "type": "select", "id": "width_mobile", "label": "Width (mobile)", "default": "fill", "options": [ { "value": "fit-content", "label": "Fit" }, { "value": "fill", "label": "Fill" }, { "value": "custom", "label": "Custom" } ] },
+    { "type": "range", "id": "custom_width_mobile", "label": "Custom width (mobile)", "min": 10, "max": 100, "step": 5, "unit": "%", "default": 100, "visible_if": "{{ block.settings.width_mobile == 'custom' }}" },
+
+    { "type": "header", "content": "Padding" },
+    { "type": "select", "id": "device", "label": "Device", "default": "desktop", "options": [ {"value":"desktop","label":"Desktop"},{"value":"mobile","label":"Mobile"} ] },
+    { "type": "range", "id": "padding-block-start", "label": "Top", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'desktop' }}" },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'desktop' }}" },
+    { "type": "range", "id": "padding-inline-start", "label": "Left", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'desktop' }}" },
+    { "type": "range", "id": "padding-inline-end", "label": "Right", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'desktop' }}" },
+    { "type": "range", "id": "padding-block-start-mobile", "label": "Top", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'mobile' }}" },
+    { "type": "range", "id": "padding-block-end-mobile", "label": "Bottom", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'mobile' }}" },
+    { "type": "range", "id": "padding-inline-start-mobile", "label": "Left", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'mobile' }}" },
+    { "type": "range", "id": "padding-inline-end-mobile", "label": "Right", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0, "visible_if": "{{ block.settings.device == 'mobile' }}" },
+
+    { "type": "header", "content": "Flavour name" },
+    { "type": "text", "id": "name", "label": "Flavour name", "default": "Flavour name" },
+    { "type": "select", "id": "name_type_preset", "label": "Text style", "default": "h5", "options": [ {"value":"rte","label":"Default"},{"value":"paragraph","label":"Paragraph"},{"value":"text-subheading","label":"Subheading"},{"value":"h6","label":"H6"},{"value":"h5","label":"H5"},{"value":"h4","label":"H4"},{"value":"h3","label":"H3"},{"value":"custom","label":"Custom"} ] },
+    { "type": "select", "id": "name_text_alignment", "label": "Alignment", "default": "center", "options": [ {"value":"start","label":"Left"},{"value":"center","label":"Centre"},{"value":"end","label":"Right"} ] },
+    { "type": "select", "id": "name_text_alignment_mobile", "label": "Alignment (mobile)", "default": "center", "options": [ {"value":"start","label":"Left"},{"value":"center","label":"Centre"},{"value":"end","label":"Right"} ] },
+    { "type": "select", "id": "name_font", "label": "Font", "default": "var(--font-body--family)", "options": [ {"value":"var(--font-body--family)","label":"Body"},{"value":"var(--font-heading--family)","label":"Heading"} ], "visible_if": "{{ block.settings.name_type_preset == 'custom' }}" },
+    { "type": "select", "id": "name_font_weight", "label": "Font weight", "default": "", "options": [ {"value":"","label":"Inherit"},{"value":"300","label":"Light"},{"value":"400","label":"Regular"},{"value":"500","label":"Medium"},{"value":"600","label":"Semi-bold"},{"value":"700","label":"Bold"} ], "visible_if": "{{ block.settings.name_type_preset == 'custom' }}" },
+    { "type": "range", "id": "name_font_size", "label": "Font size", "min": 12, "max": 100, "step": 1, "unit": "px", "default": 18, "visible_if": "{{ block.settings.name_type_preset == 'custom' }}" },
+    { "type": "range", "id": "name_font_size_mobile", "label": "Font size (mobile)", "min": 12, "max": 60, "step": 1, "unit": "px", "default": 16, "visible_if": "{{ block.settings.name_type_preset == 'custom' }}" },
+    { "type": "select", "id": "name_line_height", "label": "Line height", "default": "normal", "options": [ {"value":"tight","label":"Tight"},{"value":"normal","label":"Normal"},{"value":"loose","label":"Loose"} ], "visible_if": "{{ block.settings.name_type_preset == 'custom' }}" },
+    { "type": "select", "id": "name_text_color", "label": "Text colour", "default": "text", "options": [ {"value":"text","label":"Text"},{"value":"subtext","label":"Subtext"},{"value":"gradient","label":"Gradient"} ] },
+    { "type": "color_background", "id": "name_text_color_gradient", "label": "Gradient colour", "visible_if": "{{ block.settings.name_text_color == 'gradient' }}" },
+
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "button_label", "label": "Button text", "default": "View label" },
+    { "type": "select", "id": "button_style", "label": "Button style", "default": "secondary", "options": [ { "value": "primary", "label": "Primary" }, { "value": "secondary", "label": "Secondary" } ] },
+    { "type": "select", "id": "button_size_mobile", "label": "Button size (mobile)", "default": "medium", "options": [ {"value":"small","label":"Small"},{"value":"medium","label":"Medium"},{"value":"large","label":"Large"} ] },
+
+    { "type": "header", "content": "Popup title text" },
+    { "type": "select", "id": "title_type_preset", "label": "Text style", "default": "h4", "options": [ {"value":"rte","label":"Default"},{"value":"paragraph","label":"Paragraph"},{"value":"text-subheading","label":"Subheading"},{"value":"h6","label":"H6"},{"value":"h5","label":"H5"},{"value":"h4","label":"H4"},{"value":"h3","label":"H3"},{"value":"custom","label":"Custom"} ] },
+    { "type": "select", "id": "title_text_alignment", "label": "Alignment", "default": "center", "options": [ {"value":"start","label":"Left"},{"value":"center","label":"Centre"},{"value":"end","label":"Right"} ] },
+    { "type": "select", "id": "title_text_alignment_mobile", "label": "Alignment (mobile)", "default": "center", "options": [ {"value":"start","label":"Left"},{"value":"center","label":"Centre"},{"value":"end","label":"Right"} ] },
+    { "type": "select", "id": "title_font", "label": "Font", "default": "var(--font-heading--family)", "options": [ {"value":"var(--font-body--family)","label":"Body"},{"value":"var(--font-heading--family)","label":"Heading"} ], "visible_if": "{{ block.settings.title_type_preset == 'custom' }}" },
+    { "type": "select", "id": "title_font_weight", "label": "Font weight", "default": "", "options": [ {"value":"","label":"Inherit"},{"value":"300","label":"Light"},{"value":"400","label":"Regular"},{"value":"500","label":"Medium"},{"value":"600","label":"Semi-bold"},{"value":"700","label":"Bold"} ], "visible_if": "{{ block.settings.title_type_preset == 'custom' }}" },
+    { "type": "range", "id": "title_font_size", "label": "Font size", "min": 12, "max": 100, "step": 1, "unit": "px", "default": 28, "visible_if": "{{ block.settings.title_type_preset == 'custom' }}" },
+    { "type": "range", "id": "title_font_size_mobile", "label": "Font size (mobile)", "min": 12, "max": 60, "step": 1, "unit": "px", "default": 22, "visible_if": "{{ block.settings.title_type_preset == 'custom' }}" },
+    { "type": "select", "id": "title_line_height", "label": "Line height", "default": "normal", "options": [ {"value":"tight","label":"Tight"},{"value":"normal","label":"Normal"},{"value":"loose","label":"Loose"} ], "visible_if": "{{ block.settings.title_type_preset == 'custom' }}" },
+    { "type": "select", "id": "title_text_color", "label": "Text colour", "default": "text", "options": [ {"value":"text","label":"Text"},{"value":"subtext","label":"Subtext"},{"value":"gradient","label":"Gradient"} ] },
+    { "type": "color_background", "id": "title_text_color_gradient", "label": "Gradient colour", "visible_if": "{{ block.settings.title_text_color == 'gradient' }}" },
+
+    { "type": "header", "content": "Popup label image" },
+    { "type": "image_picker", "id": "label_image", "label": "Label image" },
+    { "type": "select", "id": "label_image_ratio", "label": "Aspect ratio", "default": "adapt", "options": [ {"value":"adapt","label":"Auto"},{"value":"1/1","label":"Square (1/1)"},{"value":"4/5","label":"Portrait (4/5)"},{"value":"3/4","label":"Portrait (3/4)"},{"value":"16/9","label":"Landscape (16/9)"},{"value":"4/3","label":"Landscape (4/3)"},{"value":"21/9","label":"Landscape (21/9)"} ] },
+    { "type": "select", "id": "label_image_ratio_mobile", "label": "Aspect ratio (mobile)", "default": "adapt", "options": [ {"value":"adapt","label":"Auto"},{"value":"1/1","label":"Square (1/1)"},{"value":"4/5","label":"Portrait (4/5)"},{"value":"3/4","label":"Portrait (3/4)"},{"value":"16/9","label":"Landscape (16/9)"},{"value":"4/3","label":"Landscape (4/3)"},{"value":"21/9","label":"Landscape (21/9)"} ] },
+    { "type": "range", "id": "label_image_width", "label": "Width", "min": 30, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "range", "id": "label_image_width_mobile", "label": "Width (mobile)", "min": 30, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "range", "id": "label_image_radius", "label": "Corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 0 },
+
+    { "type": "header", "content": "Popup ingredients text" },
+    { "type": "richtext", "id": "ingredients", "label": "Ingredients" },
+    { "type": "select", "id": "ing_type_preset", "label": "Text style", "default": "paragraph", "options": [ {"value":"rte","label":"Default"},{"value":"paragraph","label":"Paragraph"},{"value":"text-subheading","label":"Subheading"},{"value":"h6","label":"H6"},{"value":"h5","label":"H5"},{"value":"custom","label":"Custom"} ] },
+    { "type": "select", "id": "ing_text_alignment", "label": "Alignment", "default": "center", "options": [ {"value":"start","label":"Left"},{"value":"center","label":"Centre"},{"value":"end","label":"Right"} ] },
+    { "type": "select", "id": "ing_text_alignment_mobile", "label": "Alignment (mobile)", "default": "center", "options": [ {"value":"start","label":"Left"},{"value":"center","label":"Centre"},{"value":"end","label":"Right"} ] },
+    { "type": "select", "id": "ing_font", "label": "Font", "default": "var(--font-body--family)", "options": [ {"value":"var(--font-body--family)","label":"Body"},{"value":"var(--font-heading--family)","label":"Heading"} ], "visible_if": "{{ block.settings.ing_type_preset == 'custom' }}" },
+    { "type": "select", "id": "ing_font_weight", "label": "Font weight", "default": "", "options": [ {"value":"","label":"Inherit"},{"value":"300","label":"Light"},{"value":"400","label":"Regular"},{"value":"500","label":"Medium"},{"value":"600","label":"Semi-bold"},{"value":"700","label":"Bold"} ], "visible_if": "{{ block.settings.ing_type_preset == 'custom' }}" },
+    { "type": "range", "id": "ing_font_size", "label": "Font size", "min": 12, "max": 100, "step": 1, "unit": "px", "default": 15, "visible_if": "{{ block.settings.ing_type_preset == 'custom' }}" },
+    { "type": "range", "id": "ing_font_size_mobile", "label": "Font size (mobile)", "min": 12, "max": 60, "step": 1, "unit": "px", "default": 14, "visible_if": "{{ block.settings.ing_type_preset == 'custom' }}" },
+    { "type": "select", "id": "ing_line_height", "label": "Line height", "default": "normal", "options": [ {"value":"tight","label":"Tight"},{"value":"normal","label":"Normal"},{"value":"loose","label":"Loose"} ], "visible_if": "{{ block.settings.ing_type_preset == 'custom' }}" },
+    { "type": "select", "id": "ing_text_color", "label": "Text colour", "default": "text", "options": [ {"value":"text","label":"Text"},{"value":"subtext","label":"Subtext"},{"value":"gradient","label":"Gradient"} ] },
+    { "type": "color_background", "id": "ing_text_color_gradient", "label": "Gradient colour", "visible_if": "{{ block.settings.ing_text_color == 'gradient' }}" },
+
+    { "type": "header", "content": "Popup allergen text" },
+    { "type": "richtext", "id": "allergen", "label": "Allergen information" },
+    { "type": "select", "id": "alg_type_preset", "label": "Text style", "default": "paragraph", "options": [ {"value":"rte","label":"Default"},{"value":"paragraph","label":"Paragraph"},{"value":"text-subheading","label":"Subheading"},{"value":"h6","label":"H6"},{"value":"custom","label":"Custom"} ] },
+    { "type": "select", "id": "alg_text_alignment", "label": "Alignment", "default": "center", "options": [ {"value":"start","label":"Left"},{"value":"center","label":"Centre"},{"value":"end","label":"Right"} ] },
+    { "type": "select", "id": "alg_text_alignment_mobile", "label": "Alignment (mobile)", "default": "center", "options": [ {"value":"start","label":"Left"},{"value":"center","label":"Centre"},{"value":"end","label":"Right"} ] },
+    { "type": "select", "id": "alg_font", "label": "Font", "default": "var(--font-body--family)", "options": [ {"value":"var(--font-body--family)","label":"Body"},{"value":"var(--font-heading--family)","label":"Heading"} ], "visible_if": "{{ block.settings.alg_type_preset == 'custom' }}" },
+    { "type": "select", "id": "alg_font_weight", "label": "Font weight", "default": "", "options": [ {"value":"","label":"Inherit"},{"value":"300","label":"Light"},{"value":"400","label":"Regular"},{"value":"500","label":"Medium"},{"value":"600","label":"Semi-bold"},{"value":"700","label":"Bold"} ], "visible_if": "{{ block.settings.alg_type_preset == 'custom' }}" },
+    { "type": "range", "id": "alg_font_size", "label": "Font size", "min": 12, "max": 100, "step": 1, "unit": "px", "default": 14, "visible_if": "{{ block.settings.alg_type_preset == 'custom' }}" },
+    { "type": "range", "id": "alg_font_size_mobile", "label": "Font size (mobile)", "min": 12, "max": 60, "step": 1, "unit": "px", "default": 13, "visible_if": "{{ block.settings.alg_type_preset == 'custom' }}" },
+    { "type": "select", "id": "alg_line_height", "label": "Line height", "default": "normal", "options": [ {"value":"tight","label":"Tight"},{"value":"normal","label":"Normal"},{"value":"loose","label":"Loose"} ], "visible_if": "{{ block.settings.alg_type_preset == 'custom' }}" },
+    { "type": "select", "id": "alg_text_color", "label": "Text colour", "default": "subtext", "options": [ {"value":"text","label":"Text"},{"value":"subtext","label":"Subtext"},{"value":"gradient","label":"Gradient"} ] },
+    { "type": "color_background", "id": "alg_text_color_gradient", "label": "Gradient colour", "visible_if": "{{ block.settings.alg_text_color == 'gradient' }}" },
+
+    { "type": "header", "content": "Popup" },
+    { "type": "select", "id": "popup_animation", "label": "Open / close animation", "default": "fade-scale", "options": [ { "value": "none", "label": "None" }, { "value": "fade", "label": "Fade" }, { "value": "fade-scale", "label": "Fade + zoom" }, { "value": "slide-up", "label": "Slide up" } ] },
+    { "type": "range", "id": "dialog_max_width", "label": "Max width", "min": 360, "max": 720, "step": 10, "unit": "px", "default": 520 },
+    { "type": "range", "id": "dialog_radius", "label": "Corner radius", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 16 },
+    { "type": "color_scheme", "id": "popup_color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ],
+  "presets": [
+    { "name": "Flavour card" }
+  ]
+}
+{% endschema %}

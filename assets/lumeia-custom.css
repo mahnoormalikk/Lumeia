@@ -1,0 +1,432 @@
+/* ============================================================
+   Lumeia brand fonts. The @import MUST stay at the very top of
+   this file or the browser ignores it (CSS spec).
+   Space Grotesk = LTR UI font (buttons + subheadings).
+   Almarai loads conditionally from layout/theme.liquid on RTL/AR
+   pages only (not on English).
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+
+/* Stop mobile Safari/Chrome from auto-inflating ("boosting") body text in text-heavy blocks.
+   The theme never set this, so on real phones the scrolling-layers paragraphs rendered huge
+   (bigger than the headings) and blew up the layout heights — and the size changed when the
+   address bar hid (the boost recalculates on viewport change). 100% = render at the CSS size,
+   still allows pinch-zoom. Standard normalize rule. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* (Removed dead rules that targeted the OLD homepage sections, which the rebuild replaced.) */
+.footer__copyright {
+  display: none !important;
+}
+
+.image-card__label {
+  background: #ffa440;
+}
+.product-card__title {
+  min-height: 32px;
+  line-height: 16px;
+}
+.product-card__title .reversed-link__text {
+  font-size: 15px;
+}
+body.product .accordion__summary-text {
+  font-size: 20px;
+}
+/* Scoped to the hero only; desktop-only so the 70% no longer squeezes mobile (Foxecom-suggested fix, testing on DEV 2026-06-17) */
+@media (min-width: 768px) {
+  [id$="__hero"] .swiper-wrapper .slide__content {
+    width: 70%;
+  }
+}
+
+/* (Removed more dead old-homepage icon-box rules here.) */
+
+#shopify-section-template--26903372628348__icon_boxes_MVUhkE .icon-box__content .text-block p {
+  min-height: 120px;
+}
+
+#shopify-section-template--27014795133308__icon_boxes_MVUhkE .icon-box__content .text-block p {
+  min-height: 170px;
+}
+
+#shopify-section-template--26903372628348__custom_section_zCbFLj .group-block {
+  padding-left: 0px;
+  padding-right: 40px;
+}
+
+#shopify-section-template--27014795133308__custom_section_zCbFLj .group-block {
+  padding-left: 0px;
+  padding-right: 40px;
+}
+#shopify-section-template--27014795133308__custom_section_gehWqr .image-card__text {
+  min-height: 325px;
+}
+#shopify-section-template--26903372628348__custom_section_gehWqr .image-card__content p {
+  color: #fff;
+}
+#shopify-section-template--26903372628348__custom_section_gehWqr .image-card__content ul {
+  color: #fff;
+}
+
+
+#shopify-section-template--27014795133308__custom_section_gehWqr .image-card__texts p {
+  color: #fff;
+}
+#shopify-section-template--27014795133308__custom_section_gehWqr .image-card__texts h3 {
+  color: #fff;
+}
+
+
+#shopify-section-template--26903372628348__custom_section_N3CmXN .btn--icon-only.btn--medium {
+  display: none;
+}
+
+#shopify-section-template--27014795133308__custom_section_N3CmXN .btn--icon-only.btn--medium {
+  display: none;
+}
+
+
+#shopify-section-template--26903372628348__comparison_table_Tbwmcq {
+      background: #fcfaf0;
+    padding: 80px 30px;
+}
+/* #shopify-section-template--26903372628348__comparison_table_Tbwmcq svg * {
+  fill: #FCFAF0;
+} */
+
+#shopify-section-template--26903372628348__comparison_table_Tbwmcq .quick-comparison-table tr td:nth-child(2) {
+  width: 270px;
+}
+
+
+
+#shopify-section-template--27014795133308__comparison_table_Tbwmcq {
+      background: #fcfaf0;
+    padding: 80px 30px;
+}
+/* #shopify-section-template--26903372628348__comparison_table_Tbwmcq svg * {
+  fill: #FCFAF0;
+} */
+
+#shopify-section-template--27014795133308__comparison_table_Tbwmcq .quick-comparison-table tr td:nth-child(2) {
+  width: 270px;
+}
+
+body.product .variant-option__button-label:has(:checked) {
+      border: 1px solid;
+    background-color: #ffa440;
+}
+
+body.product .variant-option__button-label {
+  border: 1px solid #ffa440;
+}
+
+body.product .variant-option__button-label:hover {
+   background-color: #ffa440;
+}
+
+#shopify-section-template--26903372628348__custom_section_iQmYQw .spacing-style {
+  padding: 0;
+}
+
+#shopify-section-template--26903372628348__custom_section_iQmYQw .image-block {
+  padding-top: 40px;
+}
+
+
+#shopify-section-template--27014795133308__custom_section_iQmYQw .spacing-style {
+  padding: 0;
+}
+
+#shopify-section-template--27014795133308__custom_section_iQmYQw .image-block {
+  padding-top: 40px;
+}
+
+
+
+/* Target the 4th and 6th counter cards specifically using nth-of-type */
+#shopify-section-template--27014795133308__custom_section_VMKGTk .grid-block-content > .counter-block:nth-of-type(4) span[ref="numberDisplay"],
+#shopify-section-template--27014795133308__custom_section_VMKGTk .grid-block-content > .counter-block:nth-of-type(4) span[ref="numberPlaceholder"],
+#shopify-section-template--27014795133308__custom_section_VMKGTk .grid-block-content > .counter-block:nth-of-type(6) span[ref="numberDisplay"],
+#shopify-section-template--27014795133308__custom_section_VMKGTk .grid-block-content > .counter-block:nth-of-type(6) span[ref="numberPlaceholder"] {
+    display: none !important;
+}
+
+
+#shopify-section-template--27014795133308__main .list-item-block .list-item__icon .icon {
+  background: #FCFAF0;
+}
+
+#shopify-section-template--26903372628348__main .list-item-block .list-item__icon .icon {
+  background: #FCFAF0;
+} 
+
+body.product .comparison-item {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+body.product .sticky-add-to-cart__button {
+  width: 100%;
+}
+body.product .sticky-add-to-cart__action {
+  width: 20%;
+}
+body.product .sticky-add-to-cart__wrapper  .sticky-add-to-cart__info {
+      gap: 3.6rem;
+}
+body.product .sticky-add-to-cart__title  {
+  min-height: auto;
+}
+/* ==========================================================================
+   1. ALMARAI FONT LOADING
+   Almarai is loaded from layout/theme.liquid only when request.locale is ar.
+   English pages skip the download entirely. Phase 1: Google Fonts; self-host
+   optional later (upload woff2 to assets/ + @font-face).
+   ========================================================================== */
+
+/* ==========================================================================
+   2. ARABIC / RTL TYPOGRAPHY (clean)
+   The brand's Latin fonts (Neuton, Mulish, Space Grotesk) have no Arabic glyphs, so on Arabic
+   pages we point the theme's own font variables at Almarai and let the page inherit it through the
+   normal cascade. We also reset letter-spacing (any tracking breaks Arabic letter-joining) and
+   re-assert Almarai on the few elements the LTR "Space Grotesk !important" rules further down would
+   otherwise force a Latin font onto.
+
+   This replaces an older brute-force block (per-element !important on *, span, [class*="heading"],
+   [class*="button"], plus a stray fixed line-height:85px) that overrode the wrong variables and so
+   had to fight every element — and broke any new component whose class happened to contain
+   "heading"/"button". Same result, no brute force, no 85px bug.
+   ========================================================================== */
+html[dir="rtl"],
+html[lang="ar"] {
+  --font-body--family: 'Almarai', sans-serif;
+  --font-body--weight: 300;
+  --font-heading--family: 'Almarai', sans-serif;
+  --font-heading--weight: 400;
+  --font-subheading--family: 'Almarai', sans-serif;
+  --font-subheading--weight: 700;
+  --font-button--family: 'Almarai', sans-serif;
+  --font-button--weight: 700;
+  /* keep the custom aliases in sync in case any older rule still reads them */
+  --lumeia-font-heading: 'Almarai', sans-serif;
+  --lumeia-font-ui: 'Almarai', sans-serif;
+  --lumeia-font-body: 'Almarai', sans-serif;
+}
+html[dir="rtl"] *,
+html[lang="ar"] * { letter-spacing: normal !important; }
+/* counter the LTR Space Grotesk !important rules below (Space Grotesk has no Arabic glyphs) */
+html[lang="ar"] .button,
+html[lang="ar"] .btn,
+html[lang="ar"] .text-subheading,
+html[dir="rtl"] .button,
+html[dir="rtl"] .btn,
+html[dir="rtl"] .text-subheading {
+  font-family: 'Almarai', sans-serif !important;
+  font-weight: 700 !important;
+}
+
+/* ==========================================================================
+   3. LUMEIA RTL TYPOGRAPHY (#10)
+   Pebble mirrors layout natively on html[dir="rtl"]. These rules fix Arabic
+   typography on custom lumeia-* blocks only (Latin subheading uppercase/tracking
+   must not apply to Arabic copy).
+   ========================================================================== */
+html[lang="ar"] .lumeia-pills .lumeia-pill__text--sub,
+html[dir="rtl"] .lumeia-pills .lumeia-pill__text--sub {
+  text-transform: none;
+}
+html[lang="ar"] .lumeia-trust__text.is-upper,
+html[dir="rtl"] .lumeia-trust__text.is-upper {
+  text-transform: none;
+  letter-spacing: normal;
+}
+html[lang="ar"] .lumeia-trust__logo-label,
+html[dir="rtl"] .lumeia-trust__logo-label {
+  letter-spacing: normal;
+}
+/* Faked homepage ingredient/value tag pills (legacy Pebble text blocks): Almarai when translated */
+html[lang="ar"] [id$="__ingredients"] .text-block p:first-child strong,
+html[lang="ar"] [id$="__value_cards"] .text-block p:first-child strong,
+html[dir="rtl"] [id$="__ingredients"] .text-block p:first-child strong,
+html[dir="rtl"] [id$="__value_cards"] .text-block p:first-child strong {
+  font-family: 'Almarai', sans-serif !important;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* NOTE (follow-up): the ingredient + value-card "pills" below are still FAKED (Space Grotesk hardcoded
+   on a stray <strong>), pending their own rebuild as the lumeia-benefit-pills block (same as the hero).
+   Until then, once the ingredients/value-cards copy is translated, re-assert Almarai on them:
+   (handled in section 3 LUMEIA RTL TYPOGRAPHY above.)
+   (The hero pills + guarantee shield are now the real lumeia-benefit-pills / lumeia-list-item blocks, so
+   their old hardcoded CSS was removed.) */
+/* ==========================================================================
+   Lumeia brand: Space Grotesk UI font (buttons + subheadings) — LTR/default.
+   This theme's buttons use the class .button (NOT .btn), and subheadings use
+   .text-subheading. We override the theme's native font variables so all
+   native buttons/subheadings inherit Space Grotesk, plus explicit class rules
+   as a guarantee. RTL/Arabic is unaffected: the html[dir="rtl"] rules above
+   are more specific and keep Almarai on Arabic pages.
+   ========================================================================== */
+:root {
+  --font-button--family: 'Space Grotesk', sans-serif;
+  --font-subheading--family: 'Space Grotesk', sans-serif;
+}
+
+.button,
+.btn,
+.text-subheading {
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+
+.text-subheading {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+/* ===== Rebuild homepage template (index.rebuild): tag pills + number styling ===== */
+[id$="__ingredients"] .icon-box__icon,
+[id$="__value_cards"] .icon-box__icon { display: none; }
+
+[id$="__ingredients"] .text-block p:first-child strong {
+  display: inline-block; background: #DBD2EF; color: #44190E;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; padding: 3px 12px; border-radius: 999px;
+}
+[id$="__value_cards"] .text-block p:first-child strong {
+  color: #FFA440; font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; letter-spacing: 0.12em;
+}
+
+/* ===== Rebuild: ingredient white cards on sage ===== */
+[id$="__ingredients"] .icon-box {
+  background: #FFFFFF; border-radius: 16px;
+  padding: 28px 22px; height: 100%;
+}
+
+/* ===== Hero: centre the whole header on mobile (desktop stays left-aligned) ===== */
+/* Simple + aggressive, no :has() (which can silently kill the whole block on some browsers). */
+@media (max-width: 767px) {
+  [id$="__hero"] .slide__inner { align-items: center !important; }
+  [id$="__hero"] .slide__inner .text-block,
+  [id$="__hero"] .slide__inner .text-block *,
+  [id$="__hero"] .slide__inner p,
+  [id$="__hero"] .slide__inner h1,
+  [id$="__hero"] .slide__inner h2,
+  [id$="__hero"] .slide__inner h3 { text-align: center !important; }
+}
+
+/* Collapsible text: centre the View more/less button (text stays left-aligned) */
+body.product .read-more__toggle { align-self: center; }
+
+/* Header localization selector (Feel-style). Closed button = flag + both language names
+   (active marked). DESKTOP only — mobile uses the hamburger drawer. Scoped to .header__localization. */
+.header__localization { line-height: 1; }
+.header__localization .lumeia-loc__btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0; border: 0; background: transparent;
+}
+.header__localization .lumeia-loc__flag {
+  width: 2.2rem; height: 2.2rem; flex: 0 0 auto; border-radius: 50%;
+  background-size: cover; background-position: center;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+/* both languages stacked, the active one coloured + bold (like Feel) */
+.header__localization .lumeia-loc__langs {
+  display: inline-flex; flex-direction: column; line-height: 1.35; text-align: start;
+}
+/* Closed (pre-hovered) button language names = subheaders: ENGLISH in Space Grotesk all-caps,
+   العربية in Almarai. Deep rust; the active one bolder. Slightly smaller than the panel so the
+   uppercase doesn't widen the header. */
+.header__localization .lumeia-loc__lang { font-size: 1.05rem; color: var(--color-foreground, inherit); }
+.header__localization .lumeia-loc__lang:lang(en) { font-family: 'Space Grotesk', sans-serif !important; text-transform: uppercase; letter-spacing: 0.06em; }
+.header__localization .lumeia-loc__lang:lang(ar) { font-family: 'Almarai', sans-serif !important; }
+.header__localization .lumeia-loc__lang.is-active { color: var(--color-foreground, inherit); font-weight: 700; }
+.header__localization .dropdown-localization__button-arrow { width: 0.9rem; }
+/* Right-edge inset: the selector arrow sits the same distance from the page-width edge as the
+   VISIBLE "Home" letter on the left. "Home" carries 12px of link left-padding, so its glyph is 32px
+   in from the edge while the arrow was 20px — measured live. 2.2rem pushes the arrow to ~32px to match. */
+.header__localization--desktop { margin-inline-start: 0.75rem; margin-inline-end: 2.2rem; }
+
+/* Compact mobile nav opener (flag + current language) — opens the hamburger drawer on tap.
+   Kept small so it doesn't crowd the centred logo. */
+/* Flag-only icon button: same size/spacing as the hamburger and account/cart (Pebble forces every
+   header__buttons child to --header-icon-size), so the nav stays symmetric and nothing clips. */
+.lumeia-loc-mtrigger { padding: 0; border: 0; background: transparent; }
+.lumeia-loc-mtrigger__flag {
+  width: 2.2rem; height: 2.2rem; flex: 0 0 auto; border-radius: 50%;
+  background-size: cover; background-position: center;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+/* Feel-style localization panel — header dropdown popover + (expanded) top of the mobile drawer.
+   Scoped to our own .lumeia-locform class (rule 4 safe: custom class, not native) so it applies in both.
+   Compact: Country + Language are single rows (label left, value right), small gap, no divider between. */
+.lumeia-locform { padding: 1.6rem; min-width: 23rem; }
+.lumeia-locform__form { gap: 1.6rem; }
+.lumeia-locform__section { gap: 1.2rem; }
+/* Labels "Country:" / "Language:" — brand subheading font (Space Grotesk) on LTR; no !important so
+   Arabic pages fall through to the Almarai font-var on RTL (Space Grotesk has no Arabic glyphs).
+   Colour = deep rust via var(--color-foreground). Renamed off "__heading" so no global rule can
+   target it via [class*="heading"]. */
+.lumeia-locform__label {
+  font-size: 1.2rem; line-height: 1.5; color: var(--color-foreground, inherit);
+  /* Labels "Country:" / "Language:" in the BODY font (Mulish on EN, Almarai on AR). */
+  font-family: var(--font-body--family), sans-serif; white-space: nowrap;
+}
+.lumeia-locform__value { gap: 0.6rem; }
+/* Values are subheaders: the language toggle "ENGLISH | العربية" and the country code "KW".
+   Kept ~13px (1.3rem) so they read a touch larger than the labels, not much. */
+.lumeia-locform__langs { gap: 0.7rem; }
+.lumeia-locform__lang {
+  font-size: 1.3rem; color: var(--color-foreground, inherit);
+  background: transparent; border: 0; padding: 0; line-height: 1.5;
+}
+/* ENGLISH in Space Grotesk all-caps (subheader); العربية stays Almarai (no case). */
+.lumeia-locform__lang:lang(en) { font-family: 'Space Grotesk', sans-serif !important; text-transform: uppercase; letter-spacing: 0.08em; }
+.lumeia-locform__lang:lang(ar) { font-family: 'Almarai', sans-serif !important; }
+.lumeia-locform__lang.is-active { color: var(--color-foreground, inherit); font-weight: 700; }
+/* Separator: a thin vertical bar at ~cap height, vertically centred (like Feel), not the full-height "|"
+   glyph. Set color first, then paint the bar with currentColor (var(--color-foreground) alone resolved
+   to transparent on this element). flex:0 0 auto keeps the 1px from being shrunk away. */
+.lumeia-locform__sep {
+  flex: 0 0 auto; align-self: center; width: 1px; height: 1.1rem;
+  color: var(--color-foreground, inherit); background-color: currentColor; opacity: 0.4;
+}
+.lumeia-locform__flag {
+  width: 2rem; height: 2rem; flex: 0 0 auto; border-radius: 50%;
+  background-size: cover; background-position: center;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+/* Country code "KW" in Space Grotesk all-caps (subheader). */
+.lumeia-locform__name { font-size: 1.3rem; color: var(--color-foreground, inherit); font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: 0.08em; }
+.lumeia-locform__check { color: var(--color-foreground, inherit); }
+
+/* Mobile menu drawer: Feel-style block at the top, aligned to the menu items (16px inset, like
+   the logo and the menu links). */
+/* margin-bottom pulls the menu up ~12px so the gap from the divider to "Home" is roughly halved
+   (the drawer's default gap-6 between blocks was too airy). */
+.menu-drawer__localization { border-bottom: 1px solid rgba(0, 0, 0, 0.08); margin-bottom: -1.2rem; }
+.menu-drawer__localization .lumeia-locform { padding-inline: 1.6rem; padding-block: 1.4rem; min-width: 0; }
+
+/* Footer logo: keep Pebble's zoom-reveal animation but drop its grey loading tint.
+   The .image-zoom-reveal wrapper paints rgba(68,25,14,0.05) until the image loads, which reads as a
+   grey overlay during the reveal. Scoped to .footer (only the one logo image lives there), so the
+   13 other zoom-reveal images on the site keep their normal placeholder. */
+.footer .image-zoom-reveal { background-color: transparent !important; }
+
+/* Cart discount badges: brand orange instead of Pebble's red error colour.
+   Pebble styles .discount with --color-notification-error (red text + red tint). We recolour the
+   per-line badges (.cart-items__discounts .discount) AND the cart-page total-savings label
+   (.cart__discount-label) so the whole cart's discount UI is consistent brand orange, not red.
+   The discount-code pill (.cart-discount__pill) is NOT under either selector, so it stays as-is. */
+.cart-items__discounts .discount,
+.cart__discount-label {
+  color: #FFA440 !important;
+  background-color: rgba(255, 164, 64, 0.12) !important;
+}
