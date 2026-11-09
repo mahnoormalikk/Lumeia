@@ -141,12 +141,7 @@
         </a>
         {%- if section.settings.enable_language_selector or section.settings.enable_country_selector -%}
           <div class="header__localization header__localization--desktop hidden lg:flex items-center">
-            {%- render 'lumeia-localization',
-              block_id: section.id | append: '-loc-d',
-              show_country: section.settings.enable_country_selector,
-              show_language: section.settings.enable_language_selector,
-              enable_hover: true
-            -%}
+            {%- render 'lumeia-localization', block_id: section.id, append: '-loc-d', show_country: section.settings.enable_country_selector, show_language: section.settings.enable_language_selector, enable_hover: true -%}
           </div>
         {%- endif -%}
       </div>
@@ -4135,3 +4130,21 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {%- render 'lumeia-localization',
+                  block_id: section.id | append: '-loc-d',
+                  show_country: section.settings.enable_country_selector,
+                  show_language: section.settings.enable_language_selector,
+                  enable_hover: true
+                -%}
+  to: "{%- render 'lumeia-localization', block_id: section.id, append: '-loc-d', show_country:
+    section.settings.enable_country_selector, show_language: section.settings.enable_language_selector,
+    enable_hover: true -%}"
+  position: 6646..6856
+{% endcomment %}

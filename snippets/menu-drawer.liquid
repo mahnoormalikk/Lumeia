@@ -50,11 +50,7 @@
     <div class="dialog__content flex-grow flex flex-col gap-6 overflow-x-clip relative">
       {%- if section.settings.enable_language_selector or section.settings.enable_country_selector -%}
         <div class="menu-drawer__localization shrink-0">
-          {%- render 'lumeia-localization-form',
-            show_country: section.settings.enable_country_selector,
-            show_language: section.settings.enable_language_selector,
-            block_id: section.id | append: '-loc-drawer'
-          -%}
+          {%- render 'lumeia-localization-form', show_country: section.settings.enable_country_selector, show_language: section.settings.enable_language_selector, block_id: section.id, append: '-loc-drawer' -%}
         </div>
       {%- endif -%}
       <div
@@ -126,3 +122,20 @@
     </div>
   </dialog>
 </dialog-component>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {%- render 'lumeia-localization-form',
+                show_country: section.settings.enable_country_selector,
+                show_language: section.settings.enable_language_selector,
+                block_id: section.id | append: '-loc-drawer'
+              -%}
+  to: "{%- render 'lumeia-localization-form', show_country: section.settings.enable_country_selector,
+    show_language: section.settings.enable_language_selector, block_id: section.id,
+    append: '-loc-drawer' -%}"
+  position: 2284..2484
+{% endcomment %}
